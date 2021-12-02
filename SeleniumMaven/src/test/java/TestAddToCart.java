@@ -55,9 +55,9 @@ public class TestAddToCart {
 
         WebElement removeFromCart = driver.findElementById("remove-sauce-labs-bike-light");
         removeFromCart.click();
-        Assert.assertFalse ("Artikal nije izbrisan iz korpe.", itemName2.isDisplayed());
+        Assert.assertFalse ("Artical is not deleted from a Cart.", itemName2.isDisplayed());
 
-
+        driver.close();
 
 
     }
