@@ -3,6 +3,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 public class TestAddToCart {
 
     String loginUrl = "https://www.saucedemo.com/";
@@ -33,10 +35,9 @@ public class TestAddToCart {
     public String addRemoveItemsAndGoToCheckoutForm (ChromeDriver driver) {
 
         driver.get(homeUrl);
-        WebElement addToCartButton = driver.findElementById("add-to-cart-sauce-labs-backpack");
-        addToCartButton.click();
-        addToCartButton = driver.findElementById("add-to-cart-sauce-labs-bike-light");
-        addToCartButton.click();
+        List<WebElement> products =  driver.findElementsByXPath("//*[contains (@id, 'add-to-cart')]");
+         products.get(0).click();
+         products.get(1).click();
 
         WebElement removeFromCartButton = driver.findElementById("remove-sauce-labs-backpack");
         Assert.assertTrue("The actual text is " + removeFromCartButton.getText() + " The expected result is REMOVE", (removeFromCartButton.getText().equals("REMOVE")));
