@@ -100,7 +100,7 @@ public class TestAddToCart {
 
 
        @org.junit.Test
-    public void CompleteCheckoutPositiveFlow() {
+        public void CompleteCheckoutPositiveFlow() {
 
         ChromeDriver driver = new ChromeDriver();
         loginToHomePage(driver);
