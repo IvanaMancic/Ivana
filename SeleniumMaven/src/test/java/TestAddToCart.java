@@ -9,6 +9,12 @@ public class TestAddToCart {
     String userName = "standard_user";
     String password = "secret_sauce";
     String homeUrl = "https://www.saucedemo.com/inventory.html";
+    String firstName = "Ivana";
+    String lastName = "M";
+    String postalCode = "11000";
+    String checkoutStepOneUrl = "https://www.saucedemo.com/checkout-step-one.html";
+    String checkoutStepTwoUrl = "https://www.saucedemo.com/checkout-step-two.html";
+    String checkoutCompleteUrl = "https://www.saucedemo.com/checkout-complete.html";
 
     public String loginToHomePage (ChromeDriver driver){
         driver.get(loginUrl);
@@ -25,8 +31,7 @@ public class TestAddToCart {
 
 
     public String addRemoveItemsAndGoToCheckoutForm (ChromeDriver driver) {
-        String homeUrl = "https://www.saucedemo.com/inventory.html";
-        String checkoutStepOneUrl = "https://www.saucedemo.com/checkout-step-one.html";
+
         driver.get(homeUrl);
         WebElement addToCartButton = driver.findElementById("add-to-cart-sauce-labs-backpack");
         addToCartButton.click();
@@ -65,11 +70,6 @@ public class TestAddToCart {
     }
 
     public String completeCheckout (ChromeDriver driver) {
-        String firstName = "Ivana";
-        String lastName = "M";
-        String postalCode = "11000";
-        String checkoutStepTwoUrl = "https://www.saucedemo.com/checkout-step-two.html";
-        String checkoutCompleteUrl = "https://www.saucedemo.com/checkout-complete.html";
 
         WebElement firstNameField = driver.findElementById("first-name");
         firstNameField.sendKeys(userName);
