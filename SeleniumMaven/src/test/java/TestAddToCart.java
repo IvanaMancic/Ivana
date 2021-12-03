@@ -72,14 +72,27 @@ public class TestAddToCart {
 
     public String completeCheckout (ChromeDriver driver) {
 
-        WebElement firstNameField = driver.findElementById("first-name");
-        firstNameField.sendKeys(userName);
-        WebElement lastNameField = driver.findElementById("last-name");
-        lastNameField.sendKeys(lastName);
-        WebElement postalCodeField = driver.findElementById("postal-code");
-        postalCodeField.sendKeys(postalCode);
-        WebElement continueButton = driver.findElementById("continue");
-        continueButton.click();
+        List <WebElement> checkoutFormFields = driver.findElementsByXPath("//*[@id='first-name' or @id='last-name' or @id='postal-code' or @id='continue']");
+
+        //        for (int i=0; i<2; i++) {
+//            checkoutFormFields.get(i).sendKeys(firstName);
+//          ??????
+//        }
+
+        checkoutFormFields.get(0).sendKeys(firstName);
+        checkoutFormFields.get(1).sendKeys(lastName);
+        checkoutFormFields.get(2).sendKeys(postalCode);
+        checkoutFormFields.get(3).click();
+
+//        WebElement firstNameField = driver.findElementById("first-name");
+//        firstNameField.sendKeys(firstName);
+//        WebElement lastNameField = driver.findElementById("last-name");
+//        lastNameField.sendKeys(lastName);
+//        WebElement postalCodeField = driver.findElementById("postal-code");
+//        postalCodeField.sendKeys(postalCode);
+//        WebElement continueButton = driver.findElementById("continue");
+//        continueButton.click();
+
         Assert.assertTrue("The user is not navigated to confirm the checkout. Expected result is to be navigated to 'https://www.saucedemo.com/checkout-step-two.html'. Actual result is: The user is navigate to " + driver.getCurrentUrl(), driver.getCurrentUrl().equals(checkoutStepTwoUrl));
 
         WebElement finishCheckoutButton = driver.findElementById("finish");
@@ -98,7 +111,6 @@ public class TestAddToCart {
         driver.close();
 
     }
-
 
        @org.junit.Test
         public void CompleteCheckoutPositiveFlow() {
