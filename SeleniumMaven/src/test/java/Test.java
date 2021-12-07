@@ -46,11 +46,11 @@ public class Test {
         String cartIconBadge = cartIcon.getText();
         Assert.assertTrue("The Cart Icon Badge isn't right.", cartIconBadge.equals("2"));
         cartIcon.click();
-        WebElement itemName1 = driver.findElementById("item_4_title_link");
+//        WebElement itemName1 = driver.findElementById("item_4_title_link");
         WebElement itemName2 = driver.findElementById("item_0_title_link");
 
 // Xpath is the same for all products in a Cart, so I change it to be found by unique ID.
-//        WebElement itemName = driver.findElementByXPath("//div[@class='cart_item_label']/a/div[@class='inventory_item_name']");
+        WebElement itemName1 = driver.findElementByXPath("//div[@class='cart_item_label']/a/div[@class='inventory_item_name']");
 //        WebElement itemName2 = driver.findElementByXPath("//div[@class='cart_item_label']/a/div[@class='inventory_item_name']");
 
 //        Assert.assertTrue("Expected result is to have a container with a product. Actual result is there is no any products in a Cart", driver.findElementByXPath("//div[@class='cart_item_label']/a/div[@class='inventory_item_name']").isDisplayed());

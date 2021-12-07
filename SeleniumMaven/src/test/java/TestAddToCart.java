@@ -46,7 +46,9 @@ public class TestAddToCart {
         Assert.assertTrue("The Cart Icon Badge isn't right.", cartIcon.getText().equals("2"));
         cartIcon.click();
 
-        WebElement itemName1 = driver.findElementById("item_4_title_link");
+        WebElement itemName1 = driver.findElementByXPath("//div[@class='cart_item_label']/a/div[@class='inventory_item_name']");
+
+//        WebElement itemName1 = driver.findElementById("item_4_title_link");
         WebElement itemName2 = driver.findElementById("item_0_title_link");
         Assert.assertTrue("Expected result is to have a product 'Sauce Labs Backpack' and 'Sauce Labs Bike Light' in a Cart. " + "Actual result is there is a product: " + itemName1.getText() + " and a product: " + itemName2.getText() , itemName1.getText().equals("Sauce Labs Backpack") && itemName2.getText().equals("Sauce Labs Bike Light"));
 
