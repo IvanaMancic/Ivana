@@ -57,7 +57,7 @@ public class SwitchToExercise {
         Thread.sleep(5000);
 
 //        Assert.assertTrue("It is expected that driver opens new tab 'https://demoqa.com/sample', but driver is on the page: " + driver.getCurrentUrl(), driver.findElementByTagName("body").getText().equals("Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization."));
-        System.out.println(driver.findElementByTagName("body").getText());
+        System.out.println(driver.findElementByTagName("body").getAttribute("inner HTML"));
 
         driver.close();
         driver.switchTo().window(parentWindow);

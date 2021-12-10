@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
 //defining PRIVATE web elements of LoginPage
     @FindBy(id = "user-name")
@@ -20,12 +20,14 @@ public class LoginPage {
     @FindBy (xpath = "//button[@class='error-button']")
     private WebElement errorMessageContainer;
 
+    //constructor (for creating LoginPage objects in a new class)
 
-//constructor (for creating LoginPage objects in a new class)
-    public void LoginPage(ChromeDriver driver){
-//        super(driver);
-
+    public LoginPage(ChromeDriver driver) {
+        super(driver);
     }
+
+
+
 
 // creating PUBLIC methods with web elements in LoginPage
 

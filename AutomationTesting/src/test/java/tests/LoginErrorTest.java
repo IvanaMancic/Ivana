@@ -18,7 +18,7 @@ public class LoginErrorTest {
     public void loginErrorTest() {
         driver = new ChromeDriver();
         driver.get(loginUrl);
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.login(userName, password);
         Assert.assertTrue("Expected result is that " + errorMessage + " is displayed. And user is on the " + homeUrl + ". Actual result is that user is on the " + driver.getCurrentUrl(), loginPage.getErrorMessageText().equals(errorMessage));
 
