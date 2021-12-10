@@ -47,6 +47,8 @@ public class Animal {
         return weight;
     }
 
+
+
     public AnimalType getType() {
         return type;
     }

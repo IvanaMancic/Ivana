@@ -18,6 +18,17 @@ public class TestAddToCart {
     String checkoutStepTwoUrl = "https://www.saucedemo.com/checkout-step-two.html";
     String checkoutCompleteUrl = "https://www.saucedemo.com/checkout-complete.html";
 
+//method with 'try - catch' block to solve the StaleElementReferenceException
+    public boolean isElementPresent (WebElement locator) {
+        try {
+            return locator.isDisplayed();
+
+        } catch (final Exception e) {
+            return false;
+        }
+    }
+
+// login method
     public String loginToHomePage (ChromeDriver driver){
         driver.get(loginUrl);
         WebElement userNameInput = driver.findElementById("user-name");
@@ -31,7 +42,7 @@ public class TestAddToCart {
 
     }
 
-
+// method to add 2 products and remove 1, then go to the checkout
     public String addRemoveItemsAndGoToCheckoutForm (ChromeDriver driver) {
 
         driver.get(homeUrl);
@@ -58,10 +69,11 @@ public class TestAddToCart {
 //        System.out.println(cartIcon.getText());
 //        System.out.println(driver.findElementById("shopping_cart_container").getText());
 
-//  It doesn't work when you use defined element cartIcon (stale element error), but it works with the method findElement. WHY?
-
+//  It doesn't work when you use defined element cartIcon (stale element error), but it works with the method findElement (id is not changed). WHY?
         Assert.assertTrue("The Cart Icon Badge isn't right.", driver.findElementById("shopping_cart_container").getText().equals("1"));
-//        Assert.assertFalse ("Artical is not deleted from a Cart.", itemName2.isDisplayed());
+//        Assert.assertTrue("The Cart Icon Badge isn't right.", cartIcon.getText().equals("1"));
+
+        Assert.assertFalse ("Artical is not deleted from a Cart.", isElementPresent(itemName2));
 
         WebElement checkoutButton = driver.findElementById("checkout");
         checkoutButton.click();
@@ -72,6 +84,7 @@ public class TestAddToCart {
 
     }
 
+//method to fill the checkout form and finish checkout
     public String completeCheckout (ChromeDriver driver) {
 
         List <WebElement> checkoutFormFields = driver.findElementsByXPath("//*[@id='first-name' or @id='last-name' or @id='postal-code' or @id='continue']");
