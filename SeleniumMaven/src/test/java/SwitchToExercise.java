@@ -64,7 +64,7 @@ public class SwitchToExercise {
     }
 
     @Test
-        public void checkIfNewTabIsOpened () throws InterruptedException {
+        public void openTabWindowAndMessageWindow () throws InterruptedException {
         final ChromeDriver driver = getDriverWithOptions();
         openTheUrl(driver, windowsUrl);
         openNewTabAndGoToTheParentTab(driver);
