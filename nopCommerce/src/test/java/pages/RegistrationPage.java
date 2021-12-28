@@ -54,12 +54,22 @@ public class RegistrationPage extends BasePage {
     }
 
     public void chooseGender (RegistrationPage.Gender gender){
-
-        if (gender.toString().equals("Male"))
-        {getGenderList().get(0).click();}
-        if (gender.toString().equals("Female")) {
-            getGenderList().get(1).click();
+        switch (gender){
+            case Male -> {
+                getGenderList().get(0).click();
+            }
+            case Female -> {
+                getGenderList().get(1).click();
+            }
         }
+
+//if changed with switch case
+//        if (gender.toString().equals("Male")) {
+//            getGenderList().get(0).click();
+//            }
+//        if (gender.toString().equals("Female")) {
+//            getGenderList().get(1).click();
+//            }
     }
 
     public void fillInRequiredFields (String firstName, String lastName, String email, String password, String confirmPass){

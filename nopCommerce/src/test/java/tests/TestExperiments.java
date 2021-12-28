@@ -4,14 +4,15 @@ import enums.Currency;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.BasePage;
+import pages.LoginPage;
 import pages.RegistrationPage;
 
-public class TestExperiments extends BaseTest{
+public class TestExperiments extends BaseTest {
 
 
-//this test checks methods from BaseTest
+    //this test checks methods from BaseTest
     @Test
-    public void checkBaseTestMethods () {
+    public void checkBaseTestMethods() {
         ChromeDriver driver = new ChromeDriver();
         eneterHomePage(driver);
         clickRegisterButton(driver);
@@ -23,17 +24,25 @@ public class TestExperiments extends BaseTest{
         selectCurrency(driver, BasePage.Currency.Euro);
     }
 
-        @Test
-        public void verifyRegistrationWithValidCredentials (){
+    @Test
+    public void verifyRegistrationWithValidCredentials() {
         ChromeDriver driver = new ChromeDriver();
         eneterHomePage(driver);
         RegistrationPage page = clickRegisterButton(driver);
-        page.chooseGender(RegistrationPage.Gender.Male);
+        page.chooseGender(RegistrationPage.Gender.Female);
         page.fillInRequiredFields("Ivana", "Mancic", "ivana@gmail.com", "123456", "123456");
         page.enterDateOfBirth("14", "6", "1988");
         page.confirmRegistration();
     }
 
+    @Test
+    public void verifyLoginWithValidCredentials() {
+        ChromeDriver driver = new ChromeDriver();
+        eneterHomePage(driver);
+        LoginPage page = clickLoginButton(driver);
+        page.enterLoginInfo("ivana@gmail.com", "123456");
+        page.confirmLogin();
 
 
+    }
 }
