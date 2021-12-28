@@ -26,13 +26,13 @@ public class BasePage {
     @FindBy (className = "ico-cart")
     private WebElement cartButton;
 
-    @FindBy (className = "currency-selector")
+    @FindBy (id = "customerCurrency")
     private WebElement currencySelectorButton;
 
-    @FindBy (className = "button-1 search-box-button")
+    @FindBy (xpath = "//button[@class='button-1 search-box-button']")
     private WebElement searchButton;
 
-    @FindBy (className = "search-box-text ui-autocomplete-input")
+    @FindBy (xpath = "//input[@aria-label='Search store']")
     private WebElement searchInput;
 
 
@@ -74,6 +74,17 @@ public class BasePage {
 
     public WebElement getSearchInput() {
         return searchInput;
+    }
+
+    public enum Currency {
+        Dollar ("US Dollar"),
+        Euro ("Euro");
+
+        public String currency;
+
+        Currency (String currency){
+            this.currency=currency;
+        }
     }
 
 }
