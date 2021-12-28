@@ -7,6 +7,9 @@ import pages.*;
 
 public class BaseTest {
 
+    public void eneterHomePage (ChromeDriver driver) {
+        HomePage page = new HomePage(driver);
+    }
 
     public HomePage clickOnMainLogo (ChromeDriver driver) {
         BasePage page = new BasePage(driver);

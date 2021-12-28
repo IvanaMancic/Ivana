@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,17 @@ public class RegistrationPage extends BasePage {
     @FindBy (id="ConfirmPassword")
     private WebElement confirmPasswordField;
 
+    @FindBy (xpath="//select[@name='DateOfBirthDay']")
+    private WebElement dayOfBirthField;
+
+    @FindBy (xpath="//select[@name='DateOfBirthMonth']")
+    private WebElement monthOfBirthField;
+
+    @FindBy (xpath="//select[@name='DateOfBirthYear']")
+    private WebElement yearOfBirthField;
+
+    @FindBy (id="register-button")
+    private WebElement registerButton;
 
 
     public RegistrationPage(ChromeDriver driver){
@@ -56,6 +68,20 @@ public class RegistrationPage extends BasePage {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         confirmPasswordField.sendKeys(confirmPass);
+    }
+
+    public void enterDateOfBirth (String dayOfBirth, String monthOfBirth, String yearOfBirth){
+        Select day = new Select(dayOfBirthField);
+        day.selectByValue(dayOfBirth);
+        Select month = new Select(monthOfBirthField);
+        month.selectByValue(monthOfBirth);
+        Select year = new Select(yearOfBirthField);
+        year.selectByValue(yearOfBirth);
+    }
+
+    public void confirmRegistration (){
+        registerButton.click();
+
     }
 
 

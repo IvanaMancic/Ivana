@@ -13,7 +13,7 @@ public class TestExperiments extends BaseTest{
     @Test
     public void checkBaseTestMethods () {
         ChromeDriver driver = new ChromeDriver();
-        driver.get("https://demo.nopcommerce.com/");
+        eneterHomePage(driver);
         clickRegisterButton(driver);
         clickLoginButton(driver);
         clickOnMainLogo(driver);
@@ -24,13 +24,16 @@ public class TestExperiments extends BaseTest{
     }
 
         @Test
-        public void checkRegistrationMethods (){
+        public void verifyRegistrationWithValidCredentials (){
         ChromeDriver driver = new ChromeDriver();
-        driver.get("https://demo.nopcommerce.com/");
+        eneterHomePage(driver);
         RegistrationPage page = clickRegisterButton(driver);
         page.chooseGender(RegistrationPage.Gender.Male);
         page.fillInRequiredFields("Ivana", "Mancic", "ivana@gmail.com", "123456", "123456");
-        }
+        page.enterDateOfBirth("14", "6", "1988");
+        page.confirmRegistration();
+    }
+
 
 
 }
