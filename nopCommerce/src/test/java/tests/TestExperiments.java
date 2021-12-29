@@ -51,7 +51,7 @@ public class TestExperiments extends BaseTest {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
 //        homePage.chooseLabelFromMainManu(driver, HomePage.mainManuLabels.Computers, "hover");
-        homePage.chooseComputerSubItemAndAction(driver, HomePage.mainManuLabels.Computers, HomePage.Computer.Notebooks, "click");
+        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computer.Notebooks, "hover");
         Computer compPage = new Computer(driver);
 
 

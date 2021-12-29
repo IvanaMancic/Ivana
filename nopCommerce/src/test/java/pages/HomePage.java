@@ -20,7 +20,7 @@ public class HomePage extends BasePage {
 
     public enum mainManuLabels {
 
-        Computers("Computers"),
+        Computers("Computers", "Desktops", "Notebooks"),
         Electronics("Electronics"),
         Apparel("Apparel"),
         DigitalDownloads("Digital downloads"),
@@ -30,8 +30,15 @@ public class HomePage extends BasePage {
 
         public String label;
 
-        mainManuLabels(String label) {
+        mainManuLabels(String label, String subMenu1, String subMenu2)  {
             this.label = label;
+            subMenu1=subMenu1;
+            subMenu2=subMenu2;
+
+        }
+
+        mainManuLabels  (String label){
+            this.label=label;
         }
 
     }
@@ -85,13 +92,12 @@ public class HomePage extends BasePage {
 
 //This method finds Computer SUB item (from flying manu) and clicks or hover on it
     //1. parameter is driver
-    //2. parameter is main label (choose form HomePage enum mainManuLabels)
-    //3. parameter is sub label (choose from HomePage enum)
-    //4. parameter is String "hover" or "click" (type)
+    //2. parameter is Computer sub label (choose from enum HomePage.Computer)
+    //3. parameter is String "hover" or "click" (type)
 
-    public void chooseComputerSubItemAndAction (ChromeDriver driver, HomePage.mainManuLabels item, HomePage.Computer subItem, String hoverClick) {
+    public void chooseComputerSubItemAndAction (ChromeDriver driver, HomePage.Computer subItem, String hoverClick) {
         for (int i = 0; i < getMainManuList().size(); i++) {
-            if (getMainManuList().get(i).getText().contains(item.label)) {
+            if (getMainManuList().get(i).getText().contains(mainManuLabels.Computers.label)) {
                     Actions action = new Actions(driver);
                     action.moveToElement(getMainManuList().get(i)).build().perform();
                     ArrayList <WebElement> subMenuList = (ArrayList<WebElement>) getMainManuList().get(i).findElements(By.xpath(".//ul[@class='sublist first-level']/li"));
