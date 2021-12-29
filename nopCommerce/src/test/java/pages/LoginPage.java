@@ -6,26 +6,58 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-    @FindBy(id="Email")
+    @FindBy(id = "Email")
     private WebElement emailField;
 
-    @FindBy (id="Password")
+    @FindBy(id = "Password")
     private WebElement passwordField;
 
-    @FindBy (xpath="//button[@class='button-1 login-button']")
+    @FindBy(xpath = "//button[@class='button-1 login-button']")
     private WebElement loginButton;
 
+    @FindBy(id = "RememberMe")
+    private WebElement rememberMeCheckbox;
 
-    public LoginPage (ChromeDriver driver){
+    @FindBy(className = "forgot-password")
+    private WebElement forgotPasswordButton;
+
+    @FindBy(xpath = "//input[@class='email']")
+    private WebElement recoveryEmailField;
+
+    @FindBy(xpath = "//button[@class='button-1 password-recovery-button']")
+    private WebElement recoveryButton;
+
+
+    public LoginPage(ChromeDriver driver) {
         super(driver);
     }
 
-    public void enterLoginInfo (String email, String password){
+    public void enterLoginInfo(String email, String password) {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
     }
 
-    public void confirmLogin (){
+    public void confirmLogin() {
         loginButton.click();
     }
+
+    public void checkRememberMe() {
+        if (!rememberMeCheckbox.isSelected()) {
+            rememberMeCheckbox.click();
+        }
+    }
+
+    public void uncheckRememberMe() {
+        if (rememberMeCheckbox.isSelected()) {
+            rememberMeCheckbox.click();
+        }
+
+    }
+
+    public void recoverPassword (String email){
+        forgotPasswordButton.click();
+        recoveryEmailField.sendKeys(email);
+        recoveryButton.click();
+    }
+
 }

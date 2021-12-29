@@ -1,20 +1,16 @@
 package tests;
 
-import enums.Currency;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.BasePage;
-import pages.LoginPage;
-import pages.RegistrationPage;
+import pages.*;
 
 public class TestExperiments extends BaseTest {
 
 
-    //this test checks methods from BaseTest
     @Test
     public void checkBaseTestMethods() {
         ChromeDriver driver = new ChromeDriver();
-        eneterHomePage(driver);
+        enterHomePage(driver);
         clickRegisterButton(driver);
         clickLoginButton(driver);
         clickOnMainLogo(driver);
@@ -27,21 +23,36 @@ public class TestExperiments extends BaseTest {
     @Test
     public void verifyRegistrationWithValidCredentials() {
         ChromeDriver driver = new ChromeDriver();
-        eneterHomePage(driver);
+        enterHomePage(driver);
         RegistrationPage page = clickRegisterButton(driver);
         page.chooseGender(RegistrationPage.Gender.Female);
         page.fillInRequiredFields("Ivana", "Mancic", "ivana@gmail.com", "123456", "123456");
         page.enterDateOfBirth("14", "6", "1988");
+        page.uncheckNewsletter();
+        page.enterCompanyName("company");
         page.confirmRegistration();
     }
 
     @Test
     public void verifyLoginWithValidCredentials() {
         ChromeDriver driver = new ChromeDriver();
-        eneterHomePage(driver);
+        enterHomePage(driver);
         LoginPage page = clickLoginButton(driver);
         page.enterLoginInfo("ivana@gmail.com", "123456");
-        page.confirmLogin();
+        page.uncheckRememberMe();
+        page.recoverPassword("ivana@gmail.com");
+//        page.confirmLogin();
+
+    }
+
+
+    @Test
+    public void checkMainManu (){
+        ChromeDriver driver = new ChromeDriver();
+        HomePage homePage = new HomePage(driver);
+//        homePage.chooseLabelFromMainManu(driver, HomePage.mainManuLabels.Computers, "hover");
+        homePage.chooseComputerSubItemAndAction(driver, HomePage.mainManuLabels.Computers, HomePage.Computer.Notebooks, "click");
+        Computer compPage = new Computer(driver);
 
 
     }

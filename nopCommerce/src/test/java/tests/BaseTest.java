@@ -1,13 +1,16 @@
 package tests;
 
 import enums.Currency;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import pages.*;
 
 public class BaseTest {
 
-    public void eneterHomePage (ChromeDriver driver) {
+
+
+    public void enterHomePage(ChromeDriver driver) {
         HomePage page = new HomePage(driver);
     }
 

@@ -37,6 +37,15 @@ public class RegistrationPage extends BasePage {
     @FindBy (id="register-button")
     private WebElement registerButton;
 
+    @FindBy (className="button-1 register-continue-button")
+    private WebElement continueToHomeButton;
+
+    @FindBy (id="Newsletter")
+    private WebElement newsletterCheckbox;
+
+    @FindBy (id="Company")
+    private WebElement companyNameField;
+
 
     public RegistrationPage(ChromeDriver driver){
         super(driver);
@@ -91,7 +100,25 @@ public class RegistrationPage extends BasePage {
 
     public void confirmRegistration (){
         registerButton.click();
+        if (isElementPresent(continueToHomeButton)){
+        continueToHomeButton.click();
+        }
+    }
 
+    public void checkNewsletter (){
+        if (!newsletterCheckbox.isSelected()){
+            newsletterCheckbox.click();
+        }
+    }
+
+    public void uncheckNewsletter (){
+        if (newsletterCheckbox.isSelected()){
+            newsletterCheckbox.click();
+        }
+    }
+
+    public void enterCompanyName (String companyName){
+        companyNameField.sendKeys(companyName);
     }
 
 

@@ -42,6 +42,13 @@ public class BasePage {
         PageFactory.initElements(driver, this);
             }
 
+    public boolean isElementPresent (WebElement element){
+        try {
+            return element.isDisplayed();
+        } catch (final Exception e) {
+            return false;
+        }
+    }
 
 
     public WebElement getMainLogo() {
