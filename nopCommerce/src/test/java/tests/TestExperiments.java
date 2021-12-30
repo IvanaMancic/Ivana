@@ -50,9 +50,13 @@ public class TestExperiments extends BaseTest {
     public void checkMainManu (){
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
-//        homePage.chooseLabelFromMainManu(driver, HomePage.mainManuLabels.Computers, "hover");
-        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computer.Notebooks, "hover");
-        Computer compPage = new Computer(driver);
+        homePage.chooseLabelAndActionFromMainManu(driver, HomePage.mainManuLabels.Computers, "click");
+//        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computer.Notebooks, "hover");
+        Computers compPage = new Computers(driver);
+        compPage.chooseLabelFromComputerManu(driver, HomePage.Computer.Desktops);
+        Desktops desktopsPage = new Desktops(driver);
+//        desktopsPage.chooseProductFromList(driver, desktopsPage.getListOfDesktopProducts(), "Digital Storm");
+        desktopsPage.sortProducts(compPage.getSortValueDesc());
 
 
     }

@@ -3,6 +3,7 @@ package tests;
 import enums.Currency;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pages.*;
 
@@ -57,5 +58,7 @@ public class BaseTest {
         currencySelector.selectByVisibleText(String.valueOf(options));
 
     }
+
+
 
 }
