@@ -47,7 +47,7 @@ public class TestExperiments extends BaseTest {
 
 
     @Test
-    public void checkMainManu (){
+    public void checkMainManu () throws InterruptedException {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
         homePage.chooseLabelAndActionFromMainManu(driver, HomePage.mainManuLabels.Computers, "click");
@@ -56,7 +56,11 @@ public class TestExperiments extends BaseTest {
         compPage.chooseLabelFromComputerManu(driver, HomePage.Computer.Desktops);
         Desktops desktopsPage = new Desktops(driver);
 //        desktopsPage.chooseProductFromList(driver, desktopsPage.getListOfDesktopProducts(), "Digital Storm");
-        desktopsPage.sortProducts(compPage.getSortValueDesc());
+        desktopsPage.sortProducts(desktopsPage.getSortValueDesc());
+        desktopsPage.displayProducts(desktopsPage.getDisplay9());
+        desktopsPage.chooseListView();
+        Thread.sleep(5000);
+        desktopsPage.addProductToCart(driver, "Digital Storm");
 
 
     }
