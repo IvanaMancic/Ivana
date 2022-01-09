@@ -1,7 +1,9 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.SourceType;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -70,13 +72,22 @@ public class Products extends BasePage {
         return display9;
     }
 
-    public void chooseProductFromList (ChromeDriver driver, ArrayList<WebElement> list, String product){
-        for (int i=0; i<list.size(); i++){
-           if (list.get(i).getText().contains(product)){
-            list.get(i).click();
+//list of products for any page
+
+    public ArrayList<WebElement> getListOfProducts() {
+        ArrayList<WebElement> listOfProducts = (ArrayList<WebElement>) driver.findElementsByXPath("//div[@class='item-grid']//h2[@class='product-title']");
+        return listOfProducts;
+    }
+
+
+
+//actions with products
+    public void chooseProductFromList (ChromeDriver driver, String product){
+        for (int i=0; i<getListOfProducts().size(); i++){
+           if (getListOfProducts().get(i).getText().contains(product)){
+            getListOfProducts().get(i).click();
             break;
            }
-
         }
     }
 
@@ -98,9 +109,24 @@ public class Products extends BasePage {
         listView.click();
     }
 
-    public void addProductToCart (ChromeDriver driver, String productName){
-    WebElement element = driver.findElementByXPath("//a[contains (text(), '" + productName + "')]//parent::h2//parent::div//button[@class='button-2 product-box-add-to-cart-button']");
-        element.click();
+
+    public void addProductToCart (ChromeDriver driver, String productName) throws InterruptedException {
+        Thread.sleep(5000);
+        WebElement element = driver.findElementByXPath("//a[contains (text(), '" + productName + "')]//parent::h2//parent::div//button[@class='button-2 product-box-add-to-cart-button']");
+//found this to change click(), because I had ElementClickInterceptedException, it didn't work with waitUntilclickable
+    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
+    public void clickToCompareProduct (ChromeDriver driver, String productName) throws InterruptedException {
+        Thread.sleep(5000);
+        WebElement element = driver.findElementByXPath("//a[contains (text(), '" + productName + "')]//parent::h2//parent::div//button[@class='button-2 add-to-compare-list-button']");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
+    public void addToWishlist (ChromeDriver driver, String productName) throws InterruptedException {
+        Thread.sleep(5000);
+        WebElement element = driver.findElementByXPath("//a[contains (text(), '" + productName + "')]//parent::h2//parent::div//button[@class='button-2 add-to-wishlist-button']");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
 

@@ -60,4 +60,9 @@ public class LoginPage extends BasePage {
         recoveryButton.click();
     }
 
+    public void login (String email, String password){
+        enterLoginInfo(email, password);
+        confirmLogin();
+    }
+
 }

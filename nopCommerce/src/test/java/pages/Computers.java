@@ -17,13 +17,11 @@ public class Computers extends Products {
         return computerMenuList;
     }
 
-
-    public void chooseLabelFromComputerManu (ChromeDriver driver, HomePage.Computer item){
+    public void chooseLabelFromComputerManu (ChromeDriver driver, HomePage.Computers item){
         for (int i=0; i<getComputerMenuList().size(); i++){
-            getComputerMenuList().get(i).getText().contains(item.name());
-            getComputerMenuList().get(i).click();
-            break;
+            if (getComputerMenuList().get(i).getText().contains(item.name())) {
+                getComputerMenuList().get(i).click();
+                break;}
         }
     }
-
 }

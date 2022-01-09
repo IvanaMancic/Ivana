@@ -1,6 +1,8 @@
 package tests;
 
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.*;
 
@@ -23,7 +25,9 @@ public class TestExperiments extends BaseTest {
     @Test
     public void verifyRegistrationWithValidCredentials() {
         ChromeDriver driver = new ChromeDriver();
-        enterHomePage(driver);
+        HomePage homePage = new HomePage(driver);
+
+//        enterHomePage(driver);
         RegistrationPage page = clickRegisterButton(driver);
         page.chooseGender(RegistrationPage.Gender.Female);
         page.fillInRequiredFields("Ivana", "Mancic", "ivana@gmail.com", "123456", "123456");
@@ -31,17 +35,27 @@ public class TestExperiments extends BaseTest {
         page.uncheckNewsletter();
         page.enterCompanyName("company");
         page.confirmRegistration();
+
+
+
+
+
+
+
+
     }
 
     @Test
     public void verifyLoginWithValidCredentials() {
         ChromeDriver driver = new ChromeDriver();
-        enterHomePage(driver);
+        HomePage homePage = new HomePage(driver);
+
+//        enterHomePage(driver);
         LoginPage page = clickLoginButton(driver);
         page.enterLoginInfo("ivana@gmail.com", "123456");
         page.uncheckRememberMe();
-        page.recoverPassword("ivana@gmail.com");
-//        page.confirmLogin();
+//        page.recoverPassword("ivana@gmail.com");
+        page.confirmLogin();
 
     }
 
@@ -50,18 +64,33 @@ public class TestExperiments extends BaseTest {
     public void checkMainManu () throws InterruptedException {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
+        LoginPage page = clickLoginButton(driver);
+        page.login("ivana@gmail.com", "123456");
+
         homePage.chooseLabelAndActionFromMainManu(driver, HomePage.mainManuLabels.Computers, "click");
-//        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computer.Notebooks, "hover");
+//        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computers.Notebooks, "click");
         Computers compPage = new Computers(driver);
-        compPage.chooseLabelFromComputerManu(driver, HomePage.Computer.Desktops);
-        Desktops desktopsPage = new Desktops(driver);
-//        desktopsPage.chooseProductFromList(driver, desktopsPage.getListOfDesktopProducts(), "Digital Storm");
-        desktopsPage.sortProducts(desktopsPage.getSortValueDesc());
-        desktopsPage.displayProducts(desktopsPage.getDisplay9());
-        desktopsPage.chooseListView();
-        Thread.sleep(5000);
-        desktopsPage.addProductToCart(driver, "Digital Storm");
+        compPage.chooseLabelFromComputerManu(driver, HomePage.Computers.Notebooks);
+        Products products = new Products( driver);
+//        desktopsPage.sortProducts(desktopsPage.getSortValueDesc());
+//        desktopsPage.displayProducts(desktopsPage.getDisplay9());
+//        desktopsPage.chooseListView();
+//        desktopsPage.chooseProductFromList(driver, "Apple MacBook");
+//        desktopsPage.addProductToCart(driver, "Digital Storm");
+//        desktopsPage.clickToCompareProduct(driver, "Digital Storm");
+//        desktopsPage.clickToCompareProduct(driver, "Lenovo");
+//        desktopsPage.addToWishlist(driver, "Digital Storm");
+        products.chooseProductFromList(driver, "Samsung Series 9 ");
+        SpecificProduct product = new SpecificProduct(driver);
+//        product.enterQuantity("3");
+//        product.addToCart();
+        product.addReview();
+        ProductReview review = new ProductReview(driver);
+        review.sendReview("my title", "my text", "3");
+
+
 
 
     }
+
 }

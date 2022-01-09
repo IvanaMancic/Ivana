@@ -23,7 +23,7 @@ public class BaseTest {
 
     public RegistrationPage clickRegisterButton (ChromeDriver driver){
           BasePage page = new BasePage(driver);
-          page.getregisterButton().click();
+          page.getRegisterButton().click();
           return new RegistrationPage (driver);
     }
 

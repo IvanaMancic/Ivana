@@ -61,7 +61,7 @@ public class BasePage {
         return mainLogo;
     }
 
-    public WebElement getregisterButton() {
+    public WebElement getRegisterButton() {
         return registerButton;
     }
 
@@ -99,6 +99,17 @@ public class BasePage {
             this.currency=currency;
         }
     }
+
+    public void waitUntilClickable (WebElement element, int timeOutInSeconds){
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void waitUntilVisible (WebElement webElement, int timeOutInSeconds){
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
 
 
 
