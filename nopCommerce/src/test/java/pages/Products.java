@@ -154,13 +154,15 @@ public class Products extends BasePage {
         for (int i = 0; i < listOfProductsInWishlist.size(); i++) {
             products.add(listOfProductsInWishlist.get(i).getText());
         }
-        for (int j = 0; j < products.size(); j++) {
-           assert (products.get(j).contains(productName)) : " Product " + productName + " is not in the Wishlist. Products " + products + " are in your list";
+
+        if (products.contains(productName)) {}
+            else {
+           assert (products.contains(productName)) : " Product " + productName + " is not in the Wishlist. Products " + products + " are in your list";
+            }
         }
 
     }
 
-}
 
 
 
