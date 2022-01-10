@@ -64,8 +64,8 @@ public class TestExperiments extends BaseTest {
     public void checkMainManu () throws InterruptedException {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
-        LoginPage page = clickLoginButton(driver);
-        page.login("ivana@gmail.com", "123456");
+//        LoginPage page = clickLoginButton(driver);
+//        page.login("ivana@gmail.com", "123456");
 
         homePage.chooseLabelAndActionFromMainManu(driver, HomePage.mainManuLabels.Computers, "click");
 //        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computers.Notebooks, "click");
@@ -75,18 +75,18 @@ public class TestExperiments extends BaseTest {
 //        desktopsPage.sortProducts(desktopsPage.getSortValueDesc());
 //        desktopsPage.displayProducts(desktopsPage.getDisplay9());
 //        desktopsPage.chooseListView();
-//        desktopsPage.chooseProductFromList(driver, "Apple MacBook");
-//        desktopsPage.addProductToCart(driver, "Digital Storm");
-//        desktopsPage.clickToCompareProduct(driver, "Digital Storm");
-//        desktopsPage.clickToCompareProduct(driver, "Lenovo");
-//        desktopsPage.addToWishlist(driver, "Digital Storm");
-        products.chooseProductFromList(driver, "Samsung Series 9 ");
-        SpecificProduct product = new SpecificProduct(driver);
+//        products.chooseProductFromList(driver, "Apple MacBook");
+//        products.addProductToCart(driver, "Digital Storm");
+//       products.clickToCompareProduct(driver, "Digital Storm");
+//        products.clickToCompareProduct(driver, "Lenovo");
+        products.addToWishlist(driver, "Asus N551JK-XO076H");
+//        products.chooseProductFromList(driver, "Samsung Series 9 ");
+//        SpecificProduct product = new SpecificProduct(driver);
 //        product.enterQuantity("3");
 //        product.addToCart();
-        product.addReview();
-        ProductReview review = new ProductReview(driver);
-        review.sendReview("my title", "my text", "3");
+//        product.addReview();
+//        ProductReview review = new ProductReview(driver);
+//        review.sendReview("my title", "my text", "3");
 
 
 
