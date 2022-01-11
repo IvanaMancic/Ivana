@@ -34,8 +34,9 @@ public class BaseTest {
         return new LoginPage(driver);
     }
 
-    public WishListPage clickWishListButton (ChromeDriver driver){
+    public WishListPage clickWishListButton (ChromeDriver driver) throws InterruptedException {
         BasePage page = new BasePage(driver);
+        Thread.sleep(3000);
         page.getWishListButton().click();
         return new WishListPage (driver);
     }

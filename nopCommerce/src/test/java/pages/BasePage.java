@@ -26,10 +26,10 @@ public class BasePage {
     @FindBy (className = "ico-login")
     private WebElement loginButton;
 
-    @FindBy (className = "ico-wishlist")
+    @FindBy (xpath = "//a[@class='ico-wishlist']")
     private WebElement wishListButton;
 
-    @FindBy (className = "ico-cart")
+    @FindBy (className = "//ico-cart")
     private WebElement cartButton;
 
     @FindBy (id = "customerCurrency")

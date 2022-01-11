@@ -10,7 +10,7 @@ public class TestExperiments extends BaseTest {
 
 
     @Test
-    public void checkBaseTestMethods() {
+    public void checkBaseTestMethods() throws InterruptedException {
         ChromeDriver driver = new ChromeDriver();
         enterHomePage(driver);
         clickRegisterButton(driver);
