@@ -1,7 +1,5 @@
 package pages;
 
-import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,11 +37,13 @@ public class Products extends BasePage {
     private WebElement addToWishlist;
 
     @FindBy(xpath = "//div[@class='bar-notification success']//a")
-    private WebElement wishlistNotification;
+    private WebElement notificationLink;
 
     @FindBy(xpath = "//div[@class='bar-notification success']//span[@class='close']")
-    private WebElement closeWishlistNotificationButton;
+    private WebElement closeNotificationButton;
 
+    @FindBy (xpath = "//p[@class='content']")
+    private WebElement notification;
 
 
     public Products(ChromeDriver driver) {
@@ -82,9 +82,10 @@ public class Products extends BasePage {
         return display9;
     }
 
-    public WebElement getWishlistNotification() {
-        return wishlistNotification;
+    public WebElement getNotificationLink() {
+        return notificationLink;
     }
+
 
 //list of products for any page
 
@@ -136,72 +137,43 @@ public class Products extends BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
-//wishlist methods
+    //wishlist methods
 
-    public ArrayList<WebElement>  getListOfProductsInWishList (){
+    public ArrayList<WebElement> getListOfProductsInWishList (){
         ArrayList<WebElement> listOfProductsInWishlist = (ArrayList<WebElement>) driver.findElementsByXPath("//tbody//child::tr//td[@class='product']");
         return listOfProductsInWishlist;
     }
 
     public void addAllProductsFromListToWishlist () throws InterruptedException {
         for (int i = 1; i < getListOfProducts().size(); i++) {
-                String productName = getListOfProducts().get(i).getText();
-                addToWishlist(driver, productName);
-                Thread.sleep(3000);
-            }
+            String productName = getListOfProducts().get(i).getText();
+            addToWishlist(driver, productName);
+            Thread.sleep(3000);
         }
+    }
 
     public void addToWishlist(ChromeDriver driver, String productName) throws InterruptedException {
         Thread.sleep(5000);
         WebElement element = driver.findElementByXPath("//a[contains (text(), '" + productName + "')]//parent::h2//parent::div//button[@class='button-2 add-to-wishlist-button']");
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-        System.out.println(productName);
     }
 
-    public void closeWishlistNotification() {
-        closeWishlistNotificationButton.click();
+
+    public WishListPage goToWishlistFromNotification() throws InterruptedException {
+        Thread.sleep(2000);
+        notificationLink.click();
+        return new WishListPage(driver);
     }
 
-    public void goToWishlistFromNotification() throws InterruptedException {
-        Thread.sleep(3000);
-        wishlistNotification.click();
+    public String notificationText(){
+        String message = notification.getText();
+        return message;
     }
 
-    public ArrayList<String> getTitlesOfProductsInWishlist () {
-
-        ArrayList<String> products = new ArrayList<>();
-
-        for (WebElement product : getListOfProductsInWishList()) {
-            products.add(product.getText());
-        }
-
-        return products;
+    public void closeNotification (){
+        closeNotificationButton.click();
     }
 
-    public void assertProductIsInTheWishlist(String productName) {
-          if (getTitlesOfProductsInWishlist().contains(productName)) {
-                } else {
-                    assert (getTitlesOfProductsInWishlist().contains(productName)) : " Product " + productName + " is not in the Wishlist. Products " + getTitlesOfProductsInWishlist() + " are in your list";
-                }
-            }
-
-
-
-        public void deleteAllFromWishlist (){
-        String removeButton = "//parent::tr//button[@class='remove-btn']";
-        for (WebElement product : getListOfProductsInWishList()) {
-            product.findElement(By.xpath(removeButton)).click();
-                    }
-        }
-
-        public void deleteProductFromWishlist (String productName){
-            String removeButton = "//parent::tr//button[@class='remove-btn']";
-            for (WebElement product : getListOfProductsInWishList()) {
-                if (product.getText().contains(productName)){
-                    product.findElement(By.xpath(removeButton)).click();
-                }
-            }
-        }
 
     }
 

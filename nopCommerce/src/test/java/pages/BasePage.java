@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,7 +30,7 @@ public class BasePage {
     @FindBy (xpath = "//a[@class='ico-wishlist']")
     private WebElement wishListButton;
 
-    @FindBy (className = "//ico-cart")
+    @FindBy (xpath = "//a[@class='ico-cart']")
     private WebElement cartButton;
 
     @FindBy (id = "customerCurrency")
@@ -108,6 +109,12 @@ public class BasePage {
     public void waitUntilVisible (WebElement webElement, int timeOutInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public String cartIcon (){
+        String icon = cartButton.findElement(By.xpath("//span[@class='cart-qty']")).getText();
+        System.out.println(icon);
+        return icon;
     }
 
 

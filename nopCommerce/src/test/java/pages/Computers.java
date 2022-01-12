@@ -24,4 +24,23 @@ public class Computers extends Products {
                 break;}
         }
     }
+
+    public Products openNotebooksProductsFromDropdown(){
+        HomePage homePage = new HomePage(driver);
+        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computers.Notebooks, "click");
+        return new Products(driver);
+    }
+
+    public Products openDesktopsProductsFromDropdown() {
+        HomePage homePage = new HomePage(driver);
+        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computers.Desktops, "click");
+        return new Products(driver);
+    }
+
+    public Products openSoftwareProductsFromDropdown() {
+        HomePage homePage = new HomePage(driver);
+        homePage.chooseComputerSubItemAndAction(driver, HomePage.Computers.Software, "click");
+        return new Products(driver);
+    }
+
 }
