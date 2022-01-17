@@ -6,10 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class WishListPage extends Products {
 
+    @FindBy(xpath = "//div[@class='page-title']/h1")
+    private WebElement wishlistTitleField;
 
     @FindBy(xpath = "//div[@class='share-info']/a")
     private WebElement wishlistShareButton;
@@ -22,6 +27,9 @@ public class WishListPage extends Products {
 
     @FindBy (xpath = "//button[@class = 'button-2 wishlist-add-to-cart-button']")
     private WebElement addToCart;
+
+    @FindBy (xpath = "//div[@class='no-data']")
+    private WebElement emptyWishlistNotification;
 
 
 
@@ -37,6 +45,10 @@ public class WishListPage extends Products {
 
 
     //wishlist methods
+
+    public String getPageTitle (){
+        return wishlistTitleField.getText();
+    }
 
 
     public ArrayList<String> getTitlesOfProductsInWishlist() {
@@ -70,31 +82,24 @@ public class WishListPage extends Products {
     }
 
 
-    public void deleteAllFromWishlist() {
+    public void deleteAllFromWishlist() throws InterruptedException {
         String removeButton = "//parent::tr//button[@class='remove-btn']";
-        for (WebElement product : getListOfProductsInWishList()) {
-            product.findElement(By.xpath(removeButton)).click();
+
+        for (int i=0; i<getListOfProductsInWishList().size(); i++) {
+            getListOfProductsInWishList().get(i).findElement(By.xpath(removeButton)).click();        }
+    }
+
+    public void deleteProductFromWishlist(String productName) throws InterruptedException {
+        String removeButton = "//parent::tr//button[@class='remove-btn']";
+        for (int i=0; i<getListOfProductsInWishList().size(); i++) {
+               if (getListOfProductsInWishList().get(i).getText().contains(productName)) {
+                  getListOfProductsInWishList().get(i).findElement(By.xpath(removeButton)).click();
+               }
         }
     }
-
-    public void deleteProductFromWishlist(String productName) {
-        String removeButton = "//parent::tr//button[@class='remove-btn']";
-        for (WebElement product : getListOfProductsInWishList()) {
-            if (product.getText().contains(productName)) {
-                product.findElement(By.xpath(removeButton)).click();
-            }
-        }
-    }
-
-    public String getWishlistShareLink() {
-        System.out.println(getWhislistShareButton().getAttribute("href"));
-        return getWhislistShareButton().getAttribute("href");
-    }
-
 
     public void openWishlistShareLinkInNewTab() {
         String link = getWhislistShareButton().getAttribute("href");
-        ;
         ((JavascriptExecutor) driver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
@@ -116,9 +121,9 @@ public class WishListPage extends Products {
         for (WebElement product : getListOfProductsInWishList()) {
             if (product.getText().contains(productName)) {
                 value = product.findElement(By.xpath("//parent::tr//td[@class='quantity']/input")).getAttribute("value");
-
             }
         }
+
         return value;
     }
 
@@ -133,6 +138,47 @@ public class WishListPage extends Products {
     public CartPage addToCartFromWishlist (){
         addToCart.click();
         return new CartPage(driver);
+    }
+
+    public String getEmptyWishlistMessage (){
+
+        return emptyWishlistNotification.getText();
+    }
+
+    public Double countTotalPrice(String productName, double quantity) throws ParseException {
+        String unitPriceString = new String();
+        for (WebElement product : getListOfProductsInWishList()) {
+            if (product.getText().contains(productName)) {
+                String price1 = product.findElement(By.xpath("//parent::tr//span[@class='product-unit-price']")).getText();
+                unitPriceString = price1.substring(1, price1.length() - 3);
+            }
+        }
+        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+        Number number = format.parse(unitPriceString);
+        double unitPrice = number.doubleValue();
+//        System.out.println(unitPrice);
+
+        double totalPrice = unitPrice * quantity;
+        System.out.println("Total price we count is: " + totalPrice);
+
+        return totalPrice;
+    }
+
+    public Double getTotalPrice (String productName) throws ParseException {
+        String totalPriceString = new String();
+        for (WebElement product : getListOfProductsInWishList()) {
+            if (product.getText().contains(productName)) {
+                String price1 = product.findElement(By.xpath("//parent::tr//span[@class='product-subtotal']")).getText();
+                totalPriceString = price1.substring(1, price1.length() - 3);
+            }
+        }
+        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+        Number number = format.parse(totalPriceString);
+        double totalPrice = number.doubleValue();
+        System.out.println("Total price we get from WebElement is: " + totalPrice);
+
+        return totalPrice;
+
     }
 
 

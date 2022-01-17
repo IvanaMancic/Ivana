@@ -20,6 +20,7 @@ public class Products extends BasePage {
     private String display6 = "6";
     private String display9 = "9";
 
+    //sort and view
 
     @FindBy(xpath = "//select[@id='products-orderby']")
     private WebElement sortButton;
@@ -33,13 +34,17 @@ public class Products extends BasePage {
     @FindBy(xpath = "//a[@title='List']")
     private WebElement listView;
 
+    //buttons
+
     @FindBy(xpath = "//button[@class='button-2 add-to-wishlist-button']")
     private WebElement addToWishlist;
+
+    //notification
 
     @FindBy(xpath = "//div[@class='bar-notification success']//a")
     private WebElement notificationLink;
 
-    @FindBy(xpath = "//div[@class='bar-notification success']//span[@class='close']")
+    @FindBy(xpath = "//span[@class='close']")
     private WebElement closeNotificationButton;
 
     @FindBy (xpath = "//p[@class='content']")
@@ -86,12 +91,26 @@ public class Products extends BasePage {
         return notificationLink;
     }
 
+    public WebElement getNotification() {
+        return notification;
+    }
 
 //list of products for any page
 
     public ArrayList<WebElement> getListOfProducts() {
         ArrayList<WebElement> listOfProducts = (ArrayList<WebElement>) driver.findElementsByXPath("//div[@class='item-grid']//h2[@class='product-title']");
         return listOfProducts;
+    }
+
+    public ArrayList<String> getTitlesOfProducts() {
+
+        ArrayList<String> products = new ArrayList<>();
+
+        for (WebElement product : getListOfProducts()) {
+            products.add(product.getText());
+        }
+
+        return products;
     }
 
 
@@ -148,14 +167,17 @@ public class Products extends BasePage {
         for (int i = 1; i < getListOfProducts().size(); i++) {
             String productName = getListOfProducts().get(i).getText();
             addToWishlist(driver, productName);
-            Thread.sleep(3000);
+            closeNotification();
+
         }
     }
 
     public void addToWishlist(ChromeDriver driver, String productName) throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         WebElement element = driver.findElementByXPath("//a[contains (text(), '" + productName + "')]//parent::h2//parent::div//button[@class='button-2 add-to-wishlist-button']");
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        Thread.sleep(2000);
+
     }
 
 

@@ -13,9 +13,16 @@ public class HomePage extends BasePage {
 
     private String homePageUrl = "https://demo.nopcommerce.com/";
 
+    @FindBy (xpath = "//div[@class='topic-block-title']/h2")
+    private WebElement homePageTitleField;
+
     public HomePage(ChromeDriver driver) {
         super(driver);
         driver.get(homePageUrl);
+    }
+
+    public String getPageTitle (){
+        return homePageTitleField.getText();
     }
 
     public ArrayList<WebElement> getMainManuList (){
@@ -96,15 +103,16 @@ public class HomePage extends BasePage {
 // the same principle for Electronics and Apparel
 
     public void chooseComputerSubItemAndAction (ChromeDriver driver, HomePage.Computers subItem, String hoverClick) {
+
         for (int i = 0; i < getMainManuList().size(); i++) {
             if (getMainManuList().get(i).getText().contains(mainManuLabels.Computers.label)) {
                 Actions action = new Actions(driver);
                 action.moveToElement(getMainManuList().get(i)).build().perform();
-                ArrayList <WebElement> subMenuList = (ArrayList<WebElement>) getMainManuList().get(i).findElements(By.xpath(".//ul[@class='sublist first-level']/li"));
+                ArrayList<WebElement> subMenuList = (ArrayList<WebElement>) getMainManuList().get(i).findElements(By.xpath(".//ul[@class='sublist first-level']/li"));
 
-                for (int j= 0; j<subMenuList.size(); j++) {
-                    if (subMenuList.get(j).getText().contains(subItem.name())){
-                        switch (hoverClick){
+                for (int j = 0; j < subMenuList.size(); j++) {
+                    if (subMenuList.get(j).getText().contains(subItem.name())) {
+                        switch (hoverClick) {
                             case "hover":
                                 action.moveToElement(subMenuList.get(j)).build().perform();
                                 break;
@@ -122,6 +130,7 @@ public class HomePage extends BasePage {
             }
         }
     }
+
 
 
     public void chooseElectronicsSubItemAndAction (ChromeDriver driver, HomePage.Electronics subItem, String hoverClick) {

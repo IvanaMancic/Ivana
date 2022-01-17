@@ -9,55 +9,6 @@ import pages.*;
 public class TestExperiments extends BaseTest {
 
 
-    @Test
-    public void checkBaseTestMethods() throws InterruptedException {
-        ChromeDriver driver = new ChromeDriver();
-        enterHomePage(driver);
-        clickRegisterButton(driver);
-        clickLoginButton(driver);
-        clickOnMainLogo(driver);
-        search(driver, "computer");
-        clickCartButton(driver);
-        clickWishListButton(driver);
-        selectCurrency(driver, BasePage.Currency.Euro);
-    }
-
-    @Test
-    public void verifyRegistrationWithValidCredentials() {
-        ChromeDriver driver = new ChromeDriver();
-        HomePage homePage = new HomePage(driver);
-
-//        enterHomePage(driver);
-        RegistrationPage page = clickRegisterButton(driver);
-        page.chooseGender(RegistrationPage.Gender.Female);
-        page.fillInRequiredFields("Ivana", "Mancic", "ivana@gmail.com", "123456", "123456");
-        page.enterDateOfBirth("14", "6", "1988");
-        page.uncheckNewsletter();
-        page.enterCompanyName("company");
-        page.confirmRegistration();
-
-
-
-
-
-
-
-
-    }
-
-    @Test
-    public void verifyLoginWithValidCredentials() {
-        ChromeDriver driver = new ChromeDriver();
-        HomePage homePage = new HomePage(driver);
-
-//        enterHomePage(driver);
-        LoginPage page = clickLoginButton(driver);
-        page.enterLoginInfo("ivana@gmail.com", "123456");
-        page.uncheckRememberMe();
-//        page.recoverPassword("ivana@gmail.com");
-        page.confirmLogin();
-
-    }
 
 
     @Test
@@ -72,13 +23,13 @@ public class TestExperiments extends BaseTest {
         Computers compPage = new Computers(driver);
         compPage.chooseLabelFromComputerManu(driver, HomePage.Computers.Notebooks);
         Products products = new Products( driver);
-//        desktopsPage.sortProducts(desktopsPage.getSortValueDesc());
-//        desktopsPage.displayProducts(desktopsPage.getDisplay9());
-//        desktopsPage.chooseListView();
-//        products.chooseProductFromList(driver, "Apple MacBook");
-//        products.addProductToCart(driver, "Digital Storm");
-//       products.clickToCompareProduct(driver, "Digital Storm");
-//        products.clickToCompareProduct(driver, "Lenovo");
+        products.sortProducts(products.getSortValueDesc());
+        products.displayProducts(products.getDisplay9());
+        products.chooseListView();
+        products.chooseProductFromList(driver, "Apple MacBook");
+        products.addProductToCart(driver, "Digital Storm");
+       products.clickToCompareProduct(driver, "Digital Storm");
+        products.clickToCompareProduct(driver, "Lenovo");
         products.addToWishlist(driver, "Asus N551JK-XO076H");
 //        products.chooseProductFromList(driver, "Samsung Series 9 ");
 //        SpecificProduct product = new SpecificProduct(driver);

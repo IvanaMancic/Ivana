@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
+    @FindBy (xpath = "//div[@class='page-title']/h1")
+    private WebElement pageTitleField;
+
     @FindBy(id = "Email")
     private WebElement emailField;
 
@@ -30,6 +33,10 @@ public class LoginPage extends BasePage {
 
     public LoginPage(ChromeDriver driver) {
         super(driver);
+    }
+
+    public String getPageTitle() {
+       return pageTitleField.getText();
     }
 
     public void enterLoginInfo(String email, String password) {

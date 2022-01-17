@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 public class RegistrationPage extends BasePage {
 
+
+    @FindBy (xpath = "//div[@class='page-title']/h1")
+    private WebElement pageTitleField;
+
     @FindBy (id="FirstName")
     private WebElement firstNameField;
 
@@ -52,6 +56,13 @@ public class RegistrationPage extends BasePage {
     }
 
 
+    public WebElement getPageTitleField() {
+        return pageTitleField;
+    }
+
+    public String getPageTitle (){
+        return pageTitleField.getText();
+    }
 
     public ArrayList<WebElement> getGenderList(){
         ArrayList<WebElement> genderList = (ArrayList<WebElement>) driver.findElements(By.xpath("//div[@id='gender']//input"));
@@ -62,8 +73,8 @@ public class RegistrationPage extends BasePage {
         Male, Female
     }
 
-    public void chooseGender (RegistrationPage.Gender gender){
-        switch (gender){
+    public void chooseGender (RegistrationPage.Gender gender) {
+        switch (gender) {
             case Male -> {
                 getGenderList().get(0).click();
             }
@@ -71,14 +82,6 @@ public class RegistrationPage extends BasePage {
                 getGenderList().get(1).click();
             }
         }
-
-//if changed with switch case
-//        if (gender.toString().equals("Male")) {
-//            getGenderList().get(0).click();
-//            }
-//        if (gender.toString().equals("Female")) {
-//            getGenderList().get(1).click();
-//            }
     }
 
     public void fillInRequiredFields (String firstName, String lastName, String email, String password, String confirmPass){

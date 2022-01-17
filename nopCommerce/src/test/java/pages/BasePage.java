@@ -111,13 +111,11 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    public String cartIcon (){
-        String icon = cartButton.findElement(By.xpath("//span[@class='cart-qty']")).getText();
-        System.out.println(icon);
-        return icon;
+    public String cartIconIndex (){
+        String index = cartButton.findElement(By.xpath("//span[@class='cart-qty']")).getText();
+        String indexNew = index.substring(1, index.length()-1);
+        System.out.println(indexNew);
+        return indexNew;
     }
-
-
-
 
 }

@@ -1,6 +1,9 @@
 package tests;
 
-import enums.Currency;
+import data.NotificationData;
+import data.PageData;
+import data.ProductsData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -9,7 +12,9 @@ import pages.*;
 
 public class BaseTest {
 
-
+    ProductsData productsData  = new ProductsData();
+    NotificationData notificationData = new NotificationData();
+    PageData pageData = new PageData();
 
     public void enterHomePage(ChromeDriver driver) {
         HomePage page = new HomePage(driver);
@@ -47,16 +52,24 @@ public class BaseTest {
         return new CartPage (driver);
     }
 
-    public void search (ChromeDriver driver, String text){
+    public Products search (ChromeDriver driver, String text){
         BasePage page = new BasePage(driver);
         page.getSearchInput().sendKeys(text);
         page.getSearchButton().click();
+        return new Products(driver);
           }
 
     public void selectCurrency (ChromeDriver driver, BasePage.Currency options) {
         BasePage page = new BasePage(driver);
         Select currencySelector = new Select(page.getCurrencySelectorButton());
         currencySelector.selectByVisibleText(String.valueOf(options));
+
+    }
+
+    public String getSelectedCurrencyText (ChromeDriver driver){
+        BasePage page = new BasePage(driver);
+        System.out.println(page.getCurrencySelectorButton().findElement(By.xpath("//option[@selected]")).getText());
+         return page.getCurrencySelectorButton().findElement(By.xpath("//option[@selected]")).getText();
 
     }
 

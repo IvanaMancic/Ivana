@@ -17,12 +17,13 @@ public class Computers extends Products {
         return computerMenuList;
     }
 
-    public void chooseLabelFromComputerManu (ChromeDriver driver, HomePage.Computers item){
+    public Products chooseLabelFromComputerManu (ChromeDriver driver, HomePage.Computers item){
         for (int i=0; i<getComputerMenuList().size(); i++){
             if (getComputerMenuList().get(i).getText().contains(item.name())) {
                 getComputerMenuList().get(i).click();
                 break;}
         }
+        return new Products(driver);
     }
 
     public Products openNotebooksProductsFromDropdown(){
