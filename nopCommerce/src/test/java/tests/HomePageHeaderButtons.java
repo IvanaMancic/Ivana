@@ -35,7 +35,7 @@ public class HomePageHeaderButtons extends BaseTest {
                     else assert (product.contains("computer")): "The product in list doesn't contain the word from search. The products in list are: " + products.getTitlesOfProducts();
                 }
         CartPage cartPage = clickCartButton(driver);
-        cartPage.getPageTitleText().equals(pageData.cartPageTitle);
+        cartPage.getPageTitle().equals(pageData.cartPageTitle);
         WishListPage wishListPage = clickWishListButton(driver);
         wishListPage.getPageTitle().equals(pageData.wishlistPageTitle);
         selectCurrency(driver, BasePage.Currency.Euro);

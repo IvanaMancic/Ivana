@@ -9,7 +9,7 @@ import pages.WishListPage;
 
 public class WishlistAddProducts extends BaseTest {
 
-    //This test should verify that:
+//This test should verify that:
     //product is added to a Wishlist
     //confirming notification 'The product has been added to your wishlist', with the link to the Wishlist is displayed
     //notification link navigates to the Wishlist page

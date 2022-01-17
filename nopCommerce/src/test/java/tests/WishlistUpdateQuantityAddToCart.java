@@ -37,7 +37,7 @@ public class WishlistUpdateQuantityAddToCart extends BaseTest {
         assert wishListPage.countTotalPrice(productsData.getNotepad1(), 5).equals(wishListPage.getTotalPrice(productsData.getNotepad1()));
         wishListPage.checkAddToCart(productsData.getNotepad1());
         CartPage cartPage = wishListPage.addToCartFromWishlist();
-        assert cartPage.getPageTitleText().equals(pageData.cartPageTitle);
+        assert cartPage.getPageTitle().equals(pageData.cartPageTitle);
         assert cartPage.cartIconIndex().equals("5");
         assert cartPage.getTitlesOfProductsInCart().contains(productsData.getNotepad1()): "Your product is not in Cart. Products in Cart are: " + cartPage.getTitlesOfProductsInCart();
         assert cartPage.countTotalPrice(productsData.getNotepad1(), 5).equals(cartPage.getTotalPrice(productsData.getNotepad1()));

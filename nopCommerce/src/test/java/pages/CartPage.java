@@ -19,7 +19,7 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
-    public String getPageTitleText() {
+    public String getPageTitle() {
         String text = pageTitle.getText();
         return text;
     }
