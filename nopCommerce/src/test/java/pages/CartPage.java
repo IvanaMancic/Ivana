@@ -83,6 +83,24 @@ public class CartPage extends BasePage {
 
     }
 
+    public void deleteProductFromCart(String productName) throws InterruptedException {
+        String removeButton = "//parent::tr//button[@class='remove-btn']";
+        for (int i=0; i<getListOfProductsInCart().size(); i++) {
+            if (getListOfProductsInCart().get(i).getText().contains(productName)) {
+                getListOfProductsInCart().get(i).findElement(By.xpath(removeButton)).click();
+            }
+        }
+    }
+
+    public void deleteAllFromCart() {
+        String removeButton = "//parent::tr//button[@class='remove-btn']";
+
+        for (int i=0; i<getListOfProductsInCart().size(); i++) {
+            getListOfProductsInCart().get(i).findElement(By.xpath(removeButton)).click();        }
+    }
+
+
+
 
 
 }

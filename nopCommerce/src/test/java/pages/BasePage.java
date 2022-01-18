@@ -42,7 +42,11 @@ public class BasePage {
     @FindBy (xpath = "//input[@aria-label='Search store']")
     private WebElement searchInput;
 
+    @FindBy (className = "ico-logout")
+    private WebElement logoutButton;
 
+    @FindBy (className = "ico-account")
+    private WebElement myAccountButton;
 
     public BasePage (ChromeDriver driver){
         this.driver=driver;
@@ -89,6 +93,15 @@ public class BasePage {
     public WebElement getSearchInput() {
         return searchInput;
     }
+
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+
+    public WebElement getMyAccountButton() {
+        return myAccountButton;
+    }
+
 
     public enum Currency {
         Dollar ("US Dollar"),

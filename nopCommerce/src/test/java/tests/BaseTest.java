@@ -73,6 +73,12 @@ public class BaseTest {
 
     }
 
+    public MyAccountPage clickMyAccountButton (ChromeDriver driver){
+        BasePage page = new BasePage(driver);
+        page.getMyAccountButton().click();
+        return new MyAccountPage (driver);
+    }
+
 
 
 }

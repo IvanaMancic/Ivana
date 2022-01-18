@@ -17,9 +17,23 @@ public class ProductReview extends SpecificProduct {
     @FindBy (xpath = "//button[@name='add-review']")
     private WebElement reviewSubmitButton;
 
+    @FindBy (xpath = "//div[@class='result']")
+    private WebElement reviewAddedField;
+
+    @FindBy (xpath = "//div[@class='product-review-item'][1]")
+    private WebElement newReviewField;
+
 
     public ProductReview(ChromeDriver driver) {
         super(driver);
+    }
+
+    public WebElement getReviewAddedField() {
+        return reviewAddedField;
+    }
+
+    public WebElement getNewReviewField() {
+        return newReviewField;
     }
 
     public ArrayList<WebElement> getRatings (){

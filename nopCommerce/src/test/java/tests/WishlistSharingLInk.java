@@ -29,8 +29,10 @@ public class WishlistSharingLInk extends BaseTest {
         products.addToWishlist(driver, productsData.getSoftware1());
         WishListPage wishlist = products.goToWishlistFromNotification();
         wishlist.assertProductIsInTheWishlist(productsData.getSoftware1());
+
         wishlist.openWishlistShareLinkInNewTab();
-        assert !(products.isElementPresent(wishlist.getWhislistShareButton())): "Sharing wishlist isn't open.";
+        assert !(products.isElementPresent(wishlist.getWhislistShareButton()))
+                : "Sharing wishlist isn't open.";
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(0));
 

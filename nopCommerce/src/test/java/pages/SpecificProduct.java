@@ -22,6 +22,8 @@ public class SpecificProduct extends Products {
 
     public void addToCart (){
         addToCartButton.click();
+        waitUntilVisible(getNotification(), 5);
+
     }
 
     public void enterQuantity (String quantity){

@@ -39,10 +39,10 @@ public class Products extends BasePage {
     @FindBy(xpath = "//button[@class='button-2 add-to-wishlist-button']")
     private WebElement addToWishlist;
 
-    //notification
+    //notifications
 
     @FindBy(xpath = "//div[@class='bar-notification success']//a")
-    private WebElement notificationLink;
+    private WebElement confirmingNotificationLink;
 
     @FindBy(xpath = "//span[@class='close']")
     private WebElement closeNotificationButton;
@@ -87,8 +87,8 @@ public class Products extends BasePage {
         return display9;
     }
 
-    public WebElement getNotificationLink() {
-        return notificationLink;
+    public WebElement getConfirmingNotificationLink() {
+        return confirmingNotificationLink;
     }
 
     public WebElement getNotification() {
@@ -183,7 +183,7 @@ public class Products extends BasePage {
 
     public WishListPage goToWishlistFromNotification() throws InterruptedException {
         Thread.sleep(2000);
-        notificationLink.click();
+        confirmingNotificationLink.click();
         return new WishListPage(driver);
     }
 

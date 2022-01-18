@@ -9,7 +9,7 @@ import pages.WishListPage;
 public class WishlistAddAllProductsFromList extends BaseTest {
 
     @Test
-    public void verifyAllProductsAreinWishlist () throws InterruptedException {
+    public void verifyAllProductsAreInWishlist () throws InterruptedException {
         ChromeDriver driver = new ChromeDriver();
         Computers computers = new Computers(driver);
         Products products = computers.openNotebooksProductsFromDropdown();

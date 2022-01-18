@@ -8,6 +8,8 @@ public class PageData {
     public String wishlistPageTitle = "Wishlist";
     public String cartPageTitle = "Shopping cart";
     public String homePageTitle = "Welcome to our store";
+    public String myAccountPageTitle = "My account - Customer info";
+
 
 
     public String getRegistrationPageTitle() {
@@ -28,5 +30,9 @@ public class PageData {
 
     public String getHomePageTitle() {
         return homePageTitle;
+    }
+
+    public String getMyAccountPageTitle() {
+        return myAccountPageTitle;
     }
 }

@@ -32,12 +32,12 @@ public class HomePageHeaderButtons extends BaseTest {
         Products products = search(driver, "computer");
             for (String product: products.getTitlesOfProducts()){
                     if (product.contains("computer")) {}
-                    else assert (product.contains("computer")): "The product in list doesn't contain the word from search. The products in list are: " + products.getTitlesOfProducts();
+                    else assert (product.contains("computer")): "The product in the list doesn't contain the word from search. The products in list are: " + products.getTitlesOfProducts();
                 }
         CartPage cartPage = clickCartButton(driver);
-        cartPage.getPageTitle().equals(pageData.cartPageTitle);
+        assert cartPage.getPageTitle().equals(pageData.cartPageTitle);
         WishListPage wishListPage = clickWishListButton(driver);
-        wishListPage.getPageTitle().equals(pageData.wishlistPageTitle);
+        assert wishListPage.getPageTitle().equals(pageData.wishlistPageTitle);
         selectCurrency(driver, BasePage.Currency.Euro);
         assert getSelectedCurrencyText(driver).equals(BasePage.Currency.Euro.name());
 

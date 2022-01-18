@@ -22,29 +22,44 @@ public class WishlistAddProducts extends BaseTest {
     //5. Choose Computers -> Notebooks from dropdown menu (List of products is shown)
     //6. Do 1 to 5 for each product in a list.
     //7. Click whilst icon (Wishlist page with all products is open)
+
     @Test
     public void verifyProductsAreAddedToWishlistWIthRightNotificationAndIconNumber () throws InterruptedException {
         ChromeDriver driver = new ChromeDriver();
         Computers computers = new Computers(driver);
         Products products = computers.openNotebooksProductsFromDropdown();
-//        for (int i = 1; i < products.getListOfProducts().size(); i++) {
-        for (int i = 1; i<3; i++) {
+
+//go through the list of products and verify for each
+        for (int i = 1; i < products.getListOfProducts().size(); i++) {
+//        for (int i = 1; i<3; i++) {
             String productName = products.getListOfProducts().get(i).getText();
             products.addToWishlist(driver, productName);
             Thread.sleep(2000);
-            assert products.isElementPresent(products.getNotificationLink()) : "Wishlist notification is not displayed.";
-            assert products.getNotificationLink().getText().equals("wishlist"): "The link text isn't right.";
-            assert products.notificationText().equals(notificationData.getConfirmAddToCartMessage()): products.notificationText();
+
+            //verify confirming notification
+            assert products.isElementPresent(products.getConfirmingNotificationLink())
+                    : "Wishlist notification is not displayed.";
+            assert products.getConfirmingNotificationLink().getText().equals("wishlist")
+                    : "The link text isn't right.";
+            assert products.notificationText().equals(notificationData.getConfirmAddToWishlistMessage())
+                    : "The notification text isn't right. The actual text is: " + products.notificationText();
+
+            //verify wishlist icon number is increased
             String number = String.valueOf(i);
-            assert products.getWishListButton().findElement(By.className("wishlist-qty")).getText().contains(number) : "Whishlist number on wishlist icon is not changed.";
+            assert products.getWishListButton().findElement(By.className("wishlist-qty")).getText()
+                    .contains(number)
+                    : "Whishlist number on wishlist icon is not changed.";
+
+            //verify product is in the wishlist
             WishListPage wishlist = products.goToWishlistFromNotification();
             wishlist.assertProductIsInTheWishlist(productName);
             computers.openNotebooksProductsFromDropdown();
 
         }
+
+     //verify all products are in the wishlist
         WishListPage wishListPage = new WishListPage(driver);
         wishListPage.assertAllProductsAreInWishlist();
-
 
     }
 }

@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -41,7 +42,7 @@ public class RegistrationPage extends BasePage {
     @FindBy (id="register-button")
     private WebElement registerButton;
 
-    @FindBy (className="button-1 register-continue-button")
+    @FindBy (xpath="//a[@class='button-1 register-continue-button']")
     private WebElement continueToHomeButton;
 
     @FindBy (id="Newsletter")
@@ -49,6 +50,12 @@ public class RegistrationPage extends BasePage {
 
     @FindBy (id="Company")
     private WebElement companyNameField;
+
+    @FindBy (xpath = "//div[@class='result']")
+    private WebElement confirmRegistrationField;
+
+    @FindBy (xpath = "//div[@class='message-error validation-summary-errors']")
+    private WebElement registrationErrorContainer;
 
 
     public RegistrationPage(ChromeDriver driver){
@@ -63,6 +70,19 @@ public class RegistrationPage extends BasePage {
     public String getPageTitle (){
         return pageTitleField.getText();
     }
+
+    public WebElement getConfirmRegistrationField() {
+        return confirmRegistrationField;
+    }
+
+    public WebElement getRegistrationErrorContainer() {
+        return registrationErrorContainer;
+    }
+
+    public WebElement getContinueToHomeButton() {
+        return continueToHomeButton;
+    }
+
 
     public ArrayList<WebElement> getGenderList(){
         ArrayList<WebElement> genderList = (ArrayList<WebElement>) driver.findElements(By.xpath("//div[@id='gender']//input"));
@@ -103,9 +123,7 @@ public class RegistrationPage extends BasePage {
 
     public void confirmRegistration (){
         registerButton.click();
-        if (isElementPresent(continueToHomeButton)){
-        continueToHomeButton.click();
-        }
+
     }
 
     public void checkNewsletter (){
@@ -124,5 +142,8 @@ public class RegistrationPage extends BasePage {
         companyNameField.sendKeys(companyName);
     }
 
+    public void continueToHome () {
+        continueToHomeButton.click();
 
+    }
 }

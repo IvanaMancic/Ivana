@@ -18,7 +18,6 @@ public class ProductsSortDisplayAddButtons extends BaseTest {
         products.sortProducts(products.getSortValueDesc());
         products.displayProducts(products.getDisplay9());
         products.chooseListView();
-//        products.chooseProductFromList(driver, "Apple MacBook");
         products.addProductToCart(driver, productsData.getNotepad1());
         products.clickToCompareProduct(driver, productsData.getNotepad1());
         products.clickToCompareProduct(driver, productsData.getNotepad2());
