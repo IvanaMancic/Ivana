@@ -12,7 +12,8 @@ public class LoginWithValidCredentials extends BaseTest {
     //User is logged in successfully with valid credentials
     //Checkbox 'remember me' can be checked and unchecked
 
-// It is necessary that user already has an account.
+// Preconditions:
+    // It is necessary that user already has an account.
 
 //Steps to reproduce (expected results):
     //1. Open home Page url (HomePage is opened)
@@ -27,13 +28,13 @@ public class LoginWithValidCredentials extends BaseTest {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
         LoginPage page = clickLoginButton(driver);
-        page.enterLoginInfo(contentData.getValidEmail(), contentData.getValidPassword());
+        page.enterLoginInfo(data.validEmail, data.validPassword);
         page.checkRememberMe();
         page.uncheckRememberMe();
 //        page.recoverPassword("ivana@gmail.com");
         page.confirmLogin();
         Assert.assertEquals("User is not on the Homepage. The url of this page is : " + driver.getCurrentUrl(),
-                            homePage.getPageTitle(), pageData.getHomePageTitle());
+                            homePage.getPageTitle(), data.homePageTitle);
         Assert.assertTrue("User is not logged in. Log out button is not found.",
                             page.isElementPresent(page.getLogoutButton()));
     }

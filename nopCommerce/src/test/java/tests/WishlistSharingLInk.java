@@ -26,9 +26,9 @@ public class WishlistSharingLInk extends BaseTest {
         ChromeDriver driver = new ChromeDriver();
         Computers computers = new Computers(driver);
         Products products = computers.openSoftwareProductsFromDropdown();
-        products.addToWishlist(driver, productsData.getSoftware1());
+        products.addToWishlist(driver, data.software1);
         WishListPage wishlist = products.goToWishlistFromNotification();
-        wishlist.assertProductIsInTheWishlist(productsData.getSoftware1());
+        wishlist.assertProductIsInTheWishlist(data.software1);
 
         wishlist.openWishlistShareLinkInNewTab();
         assert !(products.isElementPresent(wishlist.getWhislistShareButton()))

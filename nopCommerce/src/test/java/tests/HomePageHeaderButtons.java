@@ -24,20 +24,21 @@ public class HomePageHeaderButtons extends BaseTest {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
         RegistrationPage registration = clickRegisterButton(driver);
-        assert registration.getPageTitle().equals(pageData.getRegistrationPageTitle());
+        assert registration.getPageTitle().equals(data.registrationPageTitle);
         LoginPage login = clickLoginButton(driver);
-        assert login.getPageTitle().equals(pageData.getLoginPageTitle());
+        assert login.getPageTitle().equals(data.loginPageTitle);
         clickOnMainLogo(driver);
-        assert homePage.getPageTitle().equals(pageData.getHomePageTitle());
+        assert homePage.getPageTitle().equals(data.homePageTitle);
         Products products = search(driver, "computer");
             for (String product: products.getTitlesOfProducts()){
                     if (product.contains("computer")) {}
-                    else assert (product.contains("computer")): "The product in the list doesn't contain the word from search. The products in list are: " + products.getTitlesOfProducts();
+                    else assert (product.contains("computer")):
+                            "The product in the list doesn't contain the word from search. The products in list are: " + products.getTitlesOfProducts();
                 }
         CartPage cartPage = clickCartButton(driver);
-        assert cartPage.getPageTitle().equals(pageData.cartPageTitle);
+        assert cartPage.getPageTitle().equals(data.cartPageTitle);
         WishListPage wishListPage = clickWishListButton(driver);
-        assert wishListPage.getPageTitle().equals(pageData.wishlistPageTitle);
+        assert wishListPage.getPageTitle().equals(data.wishlistPageTitle);
         selectCurrency(driver, BasePage.Currency.Euro);
         assert getSelectedCurrencyText(driver).equals(BasePage.Currency.Euro.name());
 

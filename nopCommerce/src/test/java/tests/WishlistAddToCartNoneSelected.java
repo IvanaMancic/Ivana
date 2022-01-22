@@ -23,13 +23,14 @@ public class WishlistAddToCartNoneSelected extends BaseTest {
         ChromeDriver driver = new ChromeDriver();
         Computers compPage = new Computers(driver);
         Products products = compPage.openNotebooksProductsFromDropdown();
-        products.addToWishlist(driver, productsData.getNotepad1());
+        products.addToWishlist(driver, data.notepad1);
         WishListPage wishListPage = products.goToWishlistFromNotification();
         wishListPage.addToCartFromWishlist();
-        assert wishListPage.notificationText().equals(notificationData.getNoProductsInWishlistToAddToCart());
+        assert wishListPage.notificationText().equals(data.noProductsInWishlistToAddToCart);
         wishListPage.closeNotification();
         Thread.sleep(2000);
-        assert !(wishListPage.isElementPresent(wishListPage.getNotification())): "Notification is still open";
+        assert !(wishListPage.isElementPresent(wishListPage.getNotification())):
+                "Notification is still open";
 
 
     }

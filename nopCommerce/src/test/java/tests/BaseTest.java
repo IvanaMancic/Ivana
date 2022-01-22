@@ -1,9 +1,6 @@
 package tests;
 
-import data.FieldsContentData;
-import data.NotificationData;
-import data.PageData;
-import data.ProductsData;
+import data.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -11,10 +8,8 @@ import pages.*;
 
 public class BaseTest {
 
-    ProductsData productsData  = new ProductsData();
-    NotificationData notificationData = new NotificationData();
-    PageData pageData = new PageData();
-    FieldsContentData contentData = new FieldsContentData();
+    Data data = new Data();
+
 
     public void enterHomePage(ChromeDriver driver) {
         HomePage page = new HomePage(driver);

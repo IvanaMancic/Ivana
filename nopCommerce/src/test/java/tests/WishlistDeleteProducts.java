@@ -26,16 +26,18 @@ public class WishlistDeleteProducts extends BaseTest {
         ChromeDriver driver = new ChromeDriver();
         Computers compPage = new Computers(driver);
         Products products = compPage.openNotebooksProductsFromDropdown();
-        products.addToWishlist(driver, productsData.getNotepad1());
+        products.addToWishlist(driver, data.notepad1);
         compPage.openSoftwareProductsFromDropdown();
-        products.addToWishlist(driver, productsData.getSoftware1());
+        products.addToWishlist(driver, data.software1);
         Thread.sleep(2000);
         WishListPage wishListPage = clickWishListButton(driver);
-        wishListPage.deleteProductFromWishlist (productsData.getNotepad1());
+        wishListPage.deleteProductFromWishlist (data.notepad1);
         Thread.sleep(5000);
-        wishListPage.deleteProductFromWishlist (productsData.getSoftware1());
-        assert wishListPage.getListOfProductsInWishList().isEmpty(): "The Whishlist is not empty. There are these products in the Wishlist: " + wishListPage.getTitlesOfProductsInWishlist();
-        assert wishListPage.getEmptyWishlistMessage().equals(notificationData.getEmptyWishlistMessageText()): "The right text is not displayed. Expected text is : " + notificationData.getEmptyWishlistMessageText() + " The actual text is: " + wishListPage.getEmptyWishlistMessage();
+        wishListPage.deleteProductFromWishlist (data.software1);
+        assert wishListPage.getListOfProductsInWishList().isEmpty():
+                "The Whishlist is not empty. There are these products in the Wishlist: " + wishListPage.getTitlesOfProductsInWishlist();
+        assert wishListPage.getEmptyWishlistMessage().equals(data.emptyWishlistMessageText):
+                "The right text is not displayed. Expected text is : " + data.emptyWishlistMessageText + " The actual text is: " + wishListPage.getEmptyWishlistMessage();
 
     }
 

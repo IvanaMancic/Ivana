@@ -8,6 +8,9 @@ import pages.*;
 
 public class WishlistDeleteAll extends BaseTest {
 
+    //todo find bug!
+    //Test deletes 3 products (out of 5) and just continues to assert (without failing)
+
        @Test
     public void verifyAllProductsAreDeletedFromWishlist () throws InterruptedException {
             ChromeDriver driver = new ChromeDriver();
@@ -16,7 +19,8 @@ public class WishlistDeleteAll extends BaseTest {
             products.addAllProductsFromListToWishlist();
             WishListPage wishlist = clickWishListButton(driver);
             wishlist.deleteAllFromWishlist();
-            assert products.getListOfProductsInWishList().isEmpty(): "The Whishlist is not empty. There are these products in the Wishlist: " + wishlist.getTitlesOfProductsInWishlist();
+            assert products.getListOfProductsInWishList().isEmpty():
+                    "The Whishlist is not empty. There are these products in the Wishlist: " + wishlist.getTitlesOfProductsInWishlist();
         }
 
 

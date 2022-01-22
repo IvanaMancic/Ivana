@@ -41,7 +41,7 @@ public class WishlistAddProducts extends BaseTest {
                     : "Wishlist notification is not displayed.";
             assert products.getConfirmingNotificationLink().getText().equals("wishlist")
                     : "The link text isn't right.";
-            assert products.notificationText().equals(notificationData.getConfirmAddToWishlistMessage())
+            assert products.notificationText().equals(data.confirmAddToWishlistMessage)
                     : "The notification text isn't right. The actual text is: " + products.notificationText();
 
             //verify wishlist icon number is increased

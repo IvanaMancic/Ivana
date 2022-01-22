@@ -13,7 +13,8 @@ public class RegistrationWithValidCredentials extends BaseTest {
     //User successfully created an account with valid credentials
     //My account filed is filled in with right info
 
-// It is necessary that account with these credentials hasn't been created yet.
+// Preconditions:
+    // It is necessary that account with these credentials hasn't been created yet.
 
 //Steps to reproduce (expected results):
     //1. Open home Page url (HomePage is opened)
@@ -30,35 +31,35 @@ public class RegistrationWithValidCredentials extends BaseTest {
         HomePage homePage = new HomePage(driver);
         RegistrationPage page = clickRegisterButton(driver);
         page.chooseGender(RegistrationPage.Gender.Female);
-        page.fillInRequiredFields (contentData.getValidFirstName(), contentData.getValidLastName(), contentData.getValidEmail(), contentData.getValidPassword(), contentData.getValidConfirmPassword());
-        page.enterDateOfBirth(contentData.getValidDateOfBirth(), contentData.getValidMonthOfBirth(), contentData.getValidYearOfBirth());
+        page.fillInRequiredFields (data.validFirstName, data.validLastName, data.validEmail, data.validPassword, data.validConfirmPassword);
+        page.enterDateOfBirth(data.validDateOfBirth, data.validMonthOfBirth, data.validYearOfBirth);
         page.uncheckNewsletter();
         page.checkNewsletter();
-        page.enterCompanyName(contentData.getCompanyName());
+        page.enterCompanyName(data.companyName);
         page.confirmRegistration();
 
 //verify registration is complete
         Assert.assertEquals("Confirming registration message is not displayed or right.",
                             page.getConfirmRegistrationField().getText(),
-                            notificationData.getConfirmRegistration());
+                            data.confirmRegistration);
         Assert.assertTrue("My account button doesn't exist.",
                             page.isElementPresent(homePage.getMyAccountButton()));
 //navigated to Home page
         page.continueToHome();
         Assert.assertEquals("User is not on the Homepage. The url of this page is : " + driver.getCurrentUrl(),
-                    homePage.getPageTitle(), pageData.getHomePageTitle());
+                    homePage.getPageTitle(), data.homePageTitle);
 
 //verify my account info
         MyAccountPage myAccPage = clickMyAccountButton(driver);
         Assert.assertEquals(myAccPage.getPageTitleContainer().getText(),
-                            pageData.getMyAccountPageTitle());
+                            data.myAccountPageTitle);
 
 //        System.out.println("Acc name: " + myAccPage.getMyAccountNameText());
 //        System.out.println("Acc last name: " + myAccPage.getMyAccountLastNameText());
 
         Assert.assertTrue("The name and last name in account are not correct. Acc name: " + myAccPage.getMyAccountNameText() + "Acc last name: " + myAccPage.getMyAccountLastNameText(),
-                myAccPage.getMyAccountNameText().equals(contentData.getValidFirstName())
-                && myAccPage.getMyAccountLastNameText().equals(contentData.getValidLastName()));
+                myAccPage.getMyAccountNameText().equals(data.validFirstName)
+                && myAccPage.getMyAccountLastNameText().equals(data.validLastName));
 
     }
 }

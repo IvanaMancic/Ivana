@@ -8,6 +8,8 @@ import pages.WishListPage;
 
 public class WishlistAddAllProductsFromList extends BaseTest {
 
+    //todo add test cases and asserts
+
     @Test
     public void verifyAllProductsAreInWishlist () throws InterruptedException {
         ChromeDriver driver = new ChromeDriver();

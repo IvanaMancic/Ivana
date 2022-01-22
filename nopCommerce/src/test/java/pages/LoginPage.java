@@ -1,6 +1,5 @@
 package pages;
 
-import data.PageData;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;

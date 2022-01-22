@@ -30,17 +30,19 @@ public class WishlistUpdateQuantityAddToCart extends BaseTest {
         ChromeDriver driver = new ChromeDriver();
         Computers compPage = new Computers(driver);
         Products products = compPage.openNotebooksProductsFromDropdown();
-        products.addToWishlist(driver, productsData.getNotepad1());
+        products.addToWishlist(driver, data.notepad1);
         WishListPage wishListPage = products.goToWishlistFromNotification();
-        wishListPage.changeProductQuantity(productsData.getNotepad1(), "5");
-        assert (wishListPage.getProductQuantityValue(productsData.getNotepad1()).equals("5")): "Number of products is not right.";
-        assert wishListPage.countTotalPrice(productsData.getNotepad1(), 5).equals(wishListPage.getTotalPrice(productsData.getNotepad1()));
-        wishListPage.checkAddToCart(productsData.getNotepad1());
+        wishListPage.changeProductQuantity(data.notepad1, "5");
+        assert (wishListPage.getProductQuantityValue(data.notepad1).equals("5")):
+                "Number of products is not right.";
+        assert wishListPage.countTotalPrice(data.notepad1, 5).equals(wishListPage.getTotalPrice(data.notepad1));
+        wishListPage.checkAddToCart(data.notepad1);
         CartPage cartPage = wishListPage.addToCartFromWishlist();
-        assert cartPage.getPageTitle().equals(pageData.cartPageTitle);
+        assert cartPage.getPageTitle().equals(data.cartPageTitle);
         assert cartPage.cartIconIndex().equals("5");
-        assert cartPage.getTitlesOfProductsInCart().contains(productsData.getNotepad1()): "Your product is not in Cart. Products in Cart are: " + cartPage.getTitlesOfProductsInCart();
-        assert cartPage.countTotalPrice(productsData.getNotepad1(), 5).equals(cartPage.getTotalPrice(productsData.getNotepad1()));
+        assert cartPage.getTitlesOfProductsInCart().contains(data.notepad1):
+                "Your product is not in Cart. Products in Cart are: " + cartPage.getTitlesOfProductsInCart();
+        assert cartPage.countTotalPrice(data.notepad1, 5).equals(cartPage.getTotalPrice(data.notepad1));
     }
 
 }

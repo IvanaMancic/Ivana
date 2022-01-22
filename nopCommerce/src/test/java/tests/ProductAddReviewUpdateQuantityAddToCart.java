@@ -15,8 +15,9 @@ public class ProductAddReviewUpdateQuantityAddToCart extends BaseTest {
     //product with the right quantity is added to the Cart
     // The Cart icon is changed according to the quantity
 
-// It is necessary that user is logged in to send review.
-// The Cart must be empty.
+//Preconditions:
+    // It is necessary that user is logged in to send review.
+    // The Cart must be empty.
 
 //Steps to reproduce (expected results):
     //1. Open home Page url (HomePage is opened)
@@ -37,7 +38,7 @@ public class ProductAddReviewUpdateQuantityAddToCart extends BaseTest {
 
 //assert login and empty cart before continuing
         LoginPage loginPage = clickLoginButton(driver);
-        loginPage.login(contentData.getValidEmail(), contentData.getValidPassword());
+        loginPage.login(data.validEmail, data.validPassword);
         loginPage.assertLogin();
 
         CartPage cartPage = new CartPage(driver);
@@ -50,13 +51,13 @@ public class ProductAddReviewUpdateQuantityAddToCart extends BaseTest {
         homePage.chooseLabelAndActionFromMainManu(driver, HomePage.mainManuLabels.Computers, "click");
         Computers compPage = new Computers(driver);
         Products products = compPage.chooseLabelFromComputerManu(driver, HomePage.Computers.Notebooks);
-        products.chooseProductFromList(driver, productsData.getNotepad1());
+        products.chooseProductFromList(driver, data.notepad1);
 
 //assert quantity is updated
         SpecificProduct product = new SpecificProduct(driver);
         product.enterQuantity("3");
         product.addToCart();
-        assert products.notificationText().equals(notificationData.getConfirmAddToCartMessage());
+        assert products.notificationText().equals(data.confirmAddToCartMessage);
         assert products.getConfirmingNotificationLink().isEnabled();
         product.closeNotification();
         assert homePage.cartIconIndex().equals("3");
@@ -64,21 +65,21 @@ public class ProductAddReviewUpdateQuantityAddToCart extends BaseTest {
 //assert review is added
         product.addReview();
         ProductReview review = new ProductReview(driver);
-        review.sendReview(contentData.getReviewTitle(), contentData.getReviewText(), contentData.getReviewRating());
+        review.sendReview(data.reviewTitle, data.reviewText, data.reviewRating);
         Assert.assertEquals("Confirmation message isn't displayed.",
-                review.getReviewAddedField().getText(), notificationData.getConfrimReviewIsAdded());
+                review.getReviewAddedField().getText(), data.confrimReviewIsAdded);
 //        System.out.println(review.getNewReviewField().getText());
-        assert review.getNewReviewField().getText().contains(contentData.getReviewText())
-                && review.getNewReviewField().getText().contains(contentData.getReviewTitle());
+        assert review.getNewReviewField().getText().contains(data.reviewText)
+                && review.getNewReviewField().getText().contains(data.reviewTitle);
 
 //assert the right product and quantity in the cart
         clickCartButton(driver);
-        cartPage.assertProductIsInTheCart(productsData.getNotepad1());
+        cartPage.assertProductIsInTheCart(data.notepad1);
         Assert.assertEquals("The price for this quantity is not right. It should be: "
-                        + cartPage.countTotalPrice(productsData.getNotepad1(), 3)
-                        + "but it is: " + cartPage.getTotalPrice(productsData.getNotepad1()),
-                cartPage.getTotalPrice(productsData.getNotepad1()),
-                cartPage.countTotalPrice(productsData.getNotepad1(), 3));
+                        + cartPage.countTotalPrice(data.notepad1, 3)
+                        + "but it is: " + cartPage.getTotalPrice(data.notepad1),
+                cartPage.getTotalPrice(data.notepad1),
+                cartPage.countTotalPrice(data.notepad1, 3));
 
 
     }
