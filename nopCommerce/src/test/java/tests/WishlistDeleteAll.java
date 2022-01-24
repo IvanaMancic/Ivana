@@ -19,7 +19,7 @@ public class WishlistDeleteAll extends BaseTest {
             products.addAllProductsFromListToWishlist();
             WishListPage wishlist = clickWishListButton(driver);
             wishlist.deleteAllFromWishlist();
-            assert products.getListOfProductsInWishList().isEmpty():
+            assert wishlist.getListOfProductsInWishList().isEmpty():
                     "The Whishlist is not empty. There are these products in the Wishlist: " + wishlist.getTitlesOfProductsInWishlist();
         }
 

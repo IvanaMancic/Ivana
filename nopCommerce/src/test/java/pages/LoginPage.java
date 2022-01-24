@@ -1,5 +1,6 @@
 package pages;
 
+import data.Data;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -75,11 +76,10 @@ public class LoginPage extends BasePage {
 
     public void assertLogin() {
         HomePage homePage = new HomePage(driver);
-        PageData data = new PageData();
         Assert.assertTrue("User is not logged in. Log out button is not found.",
                 isElementPresent(getLogoutButton()));
         Assert.assertEquals("User is not on the Homepage. The url of this page is : " + driver.getCurrentUrl(),
-                homePage.getPageTitle(), data.getHomePageTitle());
+                homePage.getPageTitle(), Data.homePageTitle);
 
     }
 

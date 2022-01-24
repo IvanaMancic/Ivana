@@ -53,13 +53,6 @@ public class BasePage {
         PageFactory.initElements(driver, this);
             }
 
-    public boolean isElementPresent (WebElement element){
-        try {
-            return element.isDisplayed();
-        } catch (final Exception e) {
-            return false;
-        }
-    }
 
 
     public WebElement getMainLogo() {
@@ -114,6 +107,14 @@ public class BasePage {
         }
     }
 
+    public boolean isElementPresent (WebElement element){
+        try {
+            return element.isDisplayed();
+        } catch (final Exception e) {
+            return false;
+        }
+    }
+
     public void waitUntilClickable (WebElement element, int timeOutInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -124,10 +125,10 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    public String cartIconIndex (){
+    public String getCartIconIndex(){
         String index = cartButton.findElement(By.xpath("//span[@class='cart-qty']")).getText();
         String indexNew = index.substring(1, index.length()-1);
-        System.out.println(indexNew);
+//        System.out.println(indexNew);
         return indexNew;
     }
 

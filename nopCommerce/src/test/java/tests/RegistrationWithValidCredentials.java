@@ -9,21 +9,24 @@ import pages.RegistrationPage;
 
 public class RegistrationWithValidCredentials extends BaseTest {
 
-//This test should verify that:
-    //User successfully created an account with valid credentials
-    //My account filed is filled in with right info
+/*
+This test should verify that:
+    - User successfully created an account with valid credentials
+    - My account filed is filled in with right info
 
-// Preconditions:
-    // It is necessary that account with these credentials hasn't been created yet.
+Preconditions:
+    It is necessary that account with these credentials hasn't been created yet.
 
-//Steps to reproduce (expected results):
-    //1. Open home Page url (HomePage is opened)
-    //2. Click on register icon (Registration page is opened)
-    //3. Choose gender, fill in all fields with valid credentials
-    //4. Uncheck newsletter (the box is unchecked)
-    //5. Check newsletter (the box is checked)
-    //6. Click register button (User is registered, the confirming notification is displayed, register icon is changed to 'my account')
-    //7. Open My Account from my account icon (my account is open, with right info)
+Steps to reproduce (expected results):
+    1. Open home Page url (HomePage is opened)
+    2. Click on register icon (Registration page is opened)
+    3. Choose gender, fill in all fields with valid credentials
+    4. Uncheck newsletter (the box is unchecked)
+    5. Check newsletter (the box is checked)
+    6. Click register button (User is registered, the confirming notification is displayed, register icon is changed to 'my account')
+    7. Open My Account from my account icon (my account is open, with right info)
+
+ */
 
     @Test
     public void verifyRegistrationWithValidCredentials() {

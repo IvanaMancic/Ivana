@@ -42,14 +42,16 @@ public class WishListPage extends Products {
         return wishlistShareButton;
     }
 
-
-
-    //wishlist methods
-
     public String getPageTitle (){
         return wishlistTitleField.getText();
     }
 
+
+    public ArrayList<WebElement> getListOfProductsInWishList (){
+        ArrayList<WebElement> listOfProductsInWishlist = (ArrayList<WebElement>) driver.findElementsByXPath
+                ("//tbody//child::tr//td[@class='product']");
+        return listOfProductsInWishlist;
+    }
 
     public ArrayList<String> getTitlesOfProductsInWishlist() {
 

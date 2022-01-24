@@ -18,16 +18,16 @@ public class Data {
     public String confirmAddToCartMessage = "The product has been added to your shopping cart";
     public String noProductsInWishlistToAddToCart = "No products selected to add to cart.";
     public String emptyWishlistMessageText = "The wishlist is empty!";
-    public String confrimReviewIsAdded = "Product review is successfully added.";
+    public String confirmReviewIsAdded = "Product review is successfully added.";
     public String confirmRegistration = "Your registration completed";
     public String registrationError = "The specified email already exists";
 
 // page titles
-    public String registrationPageTitle = "Register";
-    public String loginPageTitle = "Welcome, Please Sign In!";
+    public static final String registrationPageTitle = "Register";
+    public static final String loginPageTitle = "Welcome, Please Sign In!";
     public String wishlistPageTitle = "Wishlist";
     public String cartPageTitle = "Shopping cart";
-    public String homePageTitle = "Welcome to our store";
+    public static final String homePageTitle = "Welcome to our store";
     public String myAccountPageTitle = "My account - Customer info";
 
 //products
@@ -40,6 +40,15 @@ public class Data {
     public String reviewText = "my text";
     public String reviewRating = "3";
 
+//sort values
+    public static final String sortValueAtoZ = "5";
+    public static final String SortValueZtoA = "6";
+    public static final String SortValueAsc = "10";
+    public static final String SortValueDesc = "11";
+    public static final String SortValueCreatedOn = "15";
+    public static final String display3 = "3";
+    public static final String display6 = "6";
+    public static final String display9 = "9";
 
 
 

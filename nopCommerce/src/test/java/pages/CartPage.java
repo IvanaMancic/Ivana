@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CartPage extends BasePage {
+public class CartPage extends Products {
 
     @FindBy(xpath = "//div[@class='page-title']/h1")
     private WebElement pageTitle;
@@ -25,7 +25,8 @@ public class CartPage extends BasePage {
     }
 
     public ArrayList<WebElement> getListOfProductsInCart() {
-        ArrayList<WebElement> listOfProductsInCart = (ArrayList<WebElement>) driver.findElementsByXPath("//tbody//child::tr//td[@class='product']");
+        ArrayList<WebElement> listOfProductsInCart = (ArrayList<WebElement>) driver.findElementsByXPath
+                ("//tbody//child::tr//td[@class='product']");
         return listOfProductsInCart;
     }
 

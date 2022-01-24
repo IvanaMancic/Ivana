@@ -8,18 +8,21 @@ import pages.WishListPage;
 
 public class WishlistDeleteProducts extends BaseTest {
 
-//This test should verify that:
-    //products are successfully deleted from wishlist
-    //the message "The wishlist is empty!" is shown when the wishlist is empty
-//Steps to reproduce (expected results):
-    //1. Open home Page url (HomePage is opened)
-    //2. Choose Computers -> Notebooks from dropdown menu (List of products is shown)
-    //3. Click 'add to Wishlist' on a certain product from the list (Confirming notification is shown)
-    //4. Choose Computers -> Software from dropdown menu (List of products is shown)
-    //5. Click 'add to Wishlist' on a certain product from the list (Confirming notification is shown)
-    //6. Click wishlist icon to open wishlist (Wishlist is open and products added in previous steps are displayed)
-    //7. Click delete button (x) to delete first product (Product is not in the wishlist anymore)
-    //8. Click delete button (x) to delete second product (The wishlist is empty and the message is displayed: "The wishlist is empty!")
+/*
+This test should verify that:
+    -products are successfully deleted from wishlist
+    -the message "The wishlist is empty!" is shown when the wishlist is empty
+Steps to reproduce (expected results):
+    1. Open home Page url (HomePage is opened)
+    2. Choose Computers -> Notebooks from dropdown menu (List of products is shown)
+    3. Click 'add to Wishlist' on a certain product from the list (Confirming notification is shown)
+    4. Choose Computers -> Software from dropdown menu (List of products is shown)
+    5. Click 'add to Wishlist' on a certain product from the list (Confirming notification is shown)
+    6. Click wishlist icon to open wishlist (Wishlist is open and products added in previous steps are displayed)
+    7. Click delete button (x) to delete first product (Product is not in the wishlist anymore)
+    8. Click delete button (x) to delete second product (The wishlist is empty and the message is displayed: "The wishlist is empty!")
+
+ */
 
     @Test
     public void verifyProductsAreDeletedFromWishlistAndMessageDisplayed () throws InterruptedException {
