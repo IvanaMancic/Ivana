@@ -52,7 +52,8 @@ public class CartPage extends Products {
         String unitPriceString = new String();
         for (WebElement product : getListOfProductsInCart()) {
             if (product.getText().contains(productName)) {
-                String price1 = product.findElement(By.xpath("//parent::tr//span[@class='product-unit-price']")).getText();
+                String price1 = product.findElement
+                        (By.xpath("//parent::tr//span[@class='product-unit-price']")).getText();
                 unitPriceString = price1.substring(1, price1.length() - 3);
             }
         }

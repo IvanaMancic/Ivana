@@ -86,10 +86,12 @@ public class WishListPage extends Products {
 
     public void deleteAllFromWishlist() throws InterruptedException {
         String removeButton = "//parent::tr//button[@class='remove-btn']";
+            do {
+                getListOfProductsInWishList().get(0).findElement(By.xpath(removeButton)).click();
+            }
+            while (!getListOfProductsInWishList().isEmpty());
+        }
 
-        for (int i=0; i<getListOfProductsInWishList().size(); i++) {
-            getListOfProductsInWishList().get(i).findElement(By.xpath(removeButton)).click();        }
-    }
 
     public void deleteProductFromWishlist(String productName) throws InterruptedException {
         String removeButton = "//parent::tr//button[@class='remove-btn']";
@@ -143,7 +145,6 @@ public class WishListPage extends Products {
     }
 
     public String getEmptyWishlistMessage (){
-
         return emptyWishlistNotification.getText();
     }
 
@@ -151,7 +152,8 @@ public class WishListPage extends Products {
         String unitPriceString = new String();
         for (WebElement product : getListOfProductsInWishList()) {
             if (product.getText().contains(productName)) {
-                String price1 = product.findElement(By.xpath("//parent::tr//span[@class='product-unit-price']")).getText();
+                String price1 = product.findElement
+                        (By.xpath("//parent::tr//span[@class='product-unit-price']")).getText();
                 unitPriceString = price1.substring(1, price1.length() - 3);
             }
         }

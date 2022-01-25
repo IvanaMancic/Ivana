@@ -30,7 +30,7 @@ Steps to reproduce (expected results):
         products.addToWishlist(driver, data.notepad1);
         WishListPage wishListPage = products.goToWishlistFromNotification();
         wishListPage.addToCartFromWishlist();
-        assert wishListPage.notificationText().equals(data.noProductsInWishlistToAddToCart);
+        assert wishListPage.getNotificationText().equals(data.noProductsInWishlistToAddToCart);
         wishListPage.closeNotification();
         Thread.sleep(2000);
         assert !(wishListPage.isElementPresent(wishListPage.getNotification())):

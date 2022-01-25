@@ -120,16 +120,6 @@ public class Products extends BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
-    //wishlist methods
-
-    public void addAllProductsFromListToWishlist () throws InterruptedException {
-        for (int i = 1; i < getListOfProducts().size(); i++) {
-            String productName = getListOfProducts().get(i).getText();
-            addToWishlist(driver, productName);
-            closeNotification();
-        }
-    }
-
     public void addToWishlist(ChromeDriver driver, String productName) throws InterruptedException {
         Thread.sleep(3000);
         WebElement element = driver.findElementByXPath("//a[contains (text(), '" + productName + "')]//parent::h2//parent::div//button[@class='button-2 add-to-wishlist-button']");
@@ -139,13 +129,23 @@ public class Products extends BasePage {
     }
 
 
+    public void addAllProductsFromListToWishlist () throws InterruptedException {
+        for (int i = 1; i < getListOfProducts().size(); i++) {
+            String productName = getListOfProducts().get(i).getText();
+            addToWishlist(driver, productName);
+            closeNotification();
+        }
+    }
+
+//notification methods
+
     public WishListPage goToWishlistFromNotification() throws InterruptedException {
         Thread.sleep(2000);
         confirmingNotificationLink.click();
         return new WishListPage(driver);
     }
 
-    public String notificationText(){
+    public String getNotificationText(){
         String message = notification.getText();
         return message;
     }

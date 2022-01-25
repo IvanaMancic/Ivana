@@ -8,8 +8,9 @@ import pages.*;
 
 public class WishlistDeleteAll extends BaseTest {
 
-    //todo find bug!
-    //Test deletes 3 products (out of 5) and just continues to assert (without failing)
+
+    //Solved! Changed for with do while
+    // Test deletes 3 products (out of 5) and just continues to assert (without failing)
 
        @Test
     public void verifyAllProductsAreDeletedFromWishlist () throws InterruptedException {

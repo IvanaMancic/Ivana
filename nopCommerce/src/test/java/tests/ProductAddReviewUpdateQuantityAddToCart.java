@@ -59,7 +59,7 @@ Steps to reproduce (expected results):
         SpecificProduct product = new SpecificProduct(driver);
         product.enterQuantity("3");
         product.addToCart();
-        assert products.notificationText().equals(data.confirmAddToCartMessage);
+        assert products.getNotificationText().equals(data.confirmAddToCartMessage);
         assert products.getConfirmingNotificationLink().isEnabled();
         product.closeNotification();
         assert homePage.getCartIconIndex().equals("3");

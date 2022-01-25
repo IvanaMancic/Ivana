@@ -36,15 +36,15 @@ Steps to reproduce (expected results):
 //        for (int i = 1; i<3; i++) {
             String productName = products.getListOfProducts().get(i).getText();
             products.addToWishlist(driver, productName);
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
 
             //verify confirming notification
             assert products.isElementPresent(products.getConfirmingNotificationLink())
                     : "Wishlist notification is not displayed.";
             assert products.getConfirmingNotificationLink().getText().equals("wishlist")
                     : "The link text isn't right.";
-            assert products.notificationText().equals(data.confirmAddToWishlistMessage)
-                    : "The notification text isn't right. The actual text is: " + products.notificationText();
+            assert products.getNotificationText().equals(data.confirmAddToWishlistMessage)
+                    : "The notification text isn't right. The actual text is: " + products.getNotificationText();
 
             //verify wishlist icon number is increased
             String number = String.valueOf(i);
